@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/styles/normalize.css">
+  <link rel="stylesheet" href="assets/fonts/fontawesome-free-6.2.1-web/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/fonts/fontawesome-free-6.2.1-web/css/solid.css">
+  <link rel="stylesheet" href="./assets/styles/index.css">
+  <link rel="stylesheet" href="./assets/styles/products.css">
+  <link rel="stylesheet" href="./assets/styles/beautiful_rooms.css">
+  <link rel="stylesheet" href="/assets/styles/header.css">
+  <link rel="stylesheet" href="/assets/styles/account.css">
+  <title>Account</title>
+</head>
+
+
+<body>
+  <header class="header">
+    <div class="header__title">Funiro.</div>
+    <div class="header__btn">
+      <a href="index.html">
+        <i class="fa fa-home" aria-hidden="true"></i>
+      </a>
+    </div>
+  </header>
+  <section>
+    <div class="profile__container">
+      <div class="profile__image">
+        <img src="./assets/profile/profile.jpeg" alt="profile picture" class="profile__picture">
+      </div>
+      <button class="profile__inputContainer-change-button">Change avatar</button>
+      <div class="profile__inputContainer"></div>
+      <div class="profile__message"></div>
+      <div class="profile__content">
+        <h1 class="hero-section__heading">Ivan Petrov</h1>
+        <p class="profile__address">Moscow, Russia</p>
+      </div>
+    </div>
+  </section>
+  <section class="container content-section">
+    <h2 class="section-heading">Cart</h2>
+    <div class="cart-row">
+      <span class="cart-item cart-header cart-column">Item</span>
+      <span class="cart-price cart-header cart-column">Price</span>
+      <span class="cart-quantity cart-header cart-column">Quantity</span>
+    </div>
+    <div class="cart-items"></div>
+    <div class="cart-total">
+      <strong class="cart-total-title">Total</strong>
+      <span class="cart-total-price">$0</span>
+    </div>
+    <button class="btn btn-primary btn-purchase" type="button">
+      Purchase
+    </button>
+  </section>
+  <section class="wishlist__container">
+    <div class="wishlist__heading">
+      <h2 class="section-heading">Wishlist</h2>
+      <div class="wishlist-row">
+        <span class="wishlist-item wishlist-header wishlist-column"></span>
+        <span class="wishlist-price wishlist-header wishlist-column"></span>
+        <span class="wishlist-quantity wishlist-header wishlist-column"></span>
+      </div>
+      <div class="wishlist-items"></div>
+    </div>
+  </section>
+
+  <script src="./account.js"></script>
+  <script src="/store.js"></script>
+</body>
+
+</html>
