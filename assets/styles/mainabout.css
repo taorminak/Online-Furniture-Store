@@ -1,0 +1,208 @@
+.main .main__about {
+    width: 100%;
+    height: 20%;
+    margin-top: 5%;
+
+}
+
+.main .main__about .about__container {
+    max-width: 100%;
+    height: 4.5em;
+    margin: 0 5%;
+    padding: 0 2.5em;
+    display: flex;
+    justify-content: space-around;
+}
+
+.main .main__about .about__container .about__item-container {
+    max-width: 255px;
+    width: 100%;
+    height: 2.8125em;
+
+    transition: transform 0.3s;
+
+}
+
+.main .main__about .about__container .about__item-container .about__item {
+    max-width: 255px;
+    width: 100%;
+    height: 2.8125em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main .main__about .about__container .about__item-container .about__item .about-item__image {
+    max-width: 2.5em;
+    width: 100%;
+    height: 2.8125em;
+}
+
+.main .main__about .about__container .about__item-container .about__item .about-item__text .about-item__title {
+    color: #3a3a3a;
+    font-size: 1.125em;
+    font-weight: 700;
+    margin-bottom: 6px;
+    opacity: 0.95;
+}
+
+.main .main__about .about__container .about__item-container .about__item .about-item__text .about-item__subtle {
+    color: #898989;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.main .main__about .about__container .about__item1-container {
+    max-width: 233px;
+}
+
+.main .main__about .about__container .about__item1-container .about__item1 {
+    max-width: 233px;
+}
+
+.main .main__about .about__container .about__item1-container .about__item1 .about-item1__image {
+    max-width: 2.5em;
+    height: 2.8125em;
+    background: url('/assets/img/main_about/ABOUT-IMG1.png');
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.main .main__about .about__container .about__item2-container {
+    max-width: 233px;
+}
+
+.main .main__about .about__container .about__item2-container .about__item2 {
+    max-width: 233px;
+}
+
+.main .main__about .about__container .about__item2-container .about__item2 .about-item2__image {
+    max-width: 2.5em;
+    height: 2.8125em;
+    background: url('/assets/img/main_about/ABOUT-IMG2.png');
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.main .main__about .about__container .about__item3-container {
+    max-width: 184px;
+}
+
+.main .main__about .about__container .about__item3-container .about__item3 {
+    max-width: 184px;
+}
+
+.main .main__about .about__container .about__item3-container .about__item3 .about-item3__image {
+    max-width: 2.5em;
+    height: 2.8125em;
+    background: url('/assets/img/main_about/ABOUT-IMG3.png');
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.main .main__about .about__container .about__item4-container {
+    max-width: 245px;
+}
+
+.main .main__about .about__container .about__item4-container .about__item4 {
+    max-width: 200px;
+}
+
+.main .main__about .about__container .about__item4-container .about__item4 .about-item4__image {
+    max-width: 2.5em;
+    height: 2.8125em;
+    background: url('/assets/img/main_about/ABOUT-IMG4.png');
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.main .main__about .about__container .about__item-container:hover {
+
+    transform: translate(0, -10px);
+}
+
+@media screen and (max-width: 991.98px) {
+
+    .main .main__about .about__container {
+        height: 125px;
+        flex-wrap: wrap;
+        margin-top: 5%;
+    }
+
+    .main .main__about .about__container .about__item-container {
+        max-width: 50%;
+        display: flex;
+    }
+
+    .main .main__about .about__container .about__item1-container {
+        justify-content: flex-end;
+        padding-right: 40px;
+    }
+
+    .main .main__about .about__container .about__item1-container .about__item1 {
+        max-width: 250px;
+    }
+
+    .main .main__about .about__container .about__item3-container {
+        padding: 0 15px 0 0;
+        justify-content: flex-end;
+        padding-right: 115px;
+        margin-top: 40px;
+    }
+
+    .main .main__about .about__container .about__item3-container .about__item3 {
+        max-width: 177px;
+    }
+
+    .main .main__about .about__container .about__item2-container {
+        justify-content: flex-start;
+        padding-left: 55px;
+    }
+
+    .main .main__about .about__container .about__item2-container .about__item2 {
+        max-width: 225px;
+    }
+
+    .main .main__about .about__container .about__item4-container {
+        padding: 0 15px 0 0;
+        justify-content: flex-start;
+        padding-left: 57px;
+        margin-top: 40px;
+    }
+
+    .main .main__about .about__container {
+        height: 270px;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .main .main__about .about__container .about__item-container {
+        max-width: 260px;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .main .main__about .about__container .about__item1-container .about__item1 {
+        max-width: 260px;
+    }
+
+    .main .main__about .about__container .about__item3-container .about__item3 {
+        max-width: 200px;
+    }
+
+    .main .main__about .about__container .about__item2-container .about__item2 {
+        max-width: 240px;
+    }
+
+    .main .main__about .about__container .about__item4-container .about__item4 {
+        max-width: 205px;
+    }
+}
