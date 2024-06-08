@@ -6,6 +6,6 @@ About the project. The project is an online furniture store with the possibility
 
 Technologies. The project was created according to the design of the Figma page using JavaScript. Cart and profile pages are managed using JavaScript. Other technologies used are HTML5, CSS3.
 
-#Deploy: 
+# Deploy: 
 https://modern-furniture-corner.netlify.app/
 
