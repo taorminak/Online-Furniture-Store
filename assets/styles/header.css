@@ -37,7 +37,7 @@ li select {
   padding: 0;
   margin-left: 1.8em;
   width: 6.2em;
-  background-color: #f9f1e7;
+  background-color: transparent;
 }
 
 li a:hover {
