@@ -54,3 +54,4 @@ window.onload = function myFunction() {
   }
   localStorage.setItem("wishlist", JSON.stringify(wishlist));
 };
+
