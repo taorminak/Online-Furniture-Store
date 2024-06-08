@@ -111,6 +111,8 @@ if (document.readyState == "loading") {
   ready();
 }
 
+
+
 function ready() {
   let removeCartItemButtons = document.getElementsByClassName("btn-danger");
   for (let i = 0; i < removeCartItemButtons.length; i++) {

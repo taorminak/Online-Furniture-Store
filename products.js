@@ -195,6 +195,24 @@ document.addEventListener("DOMContentLoaded", function (event) {
   document.querySelector('.cards').innerHTML = productsCards;
 
 
+  const addButton = document.querySelectorAll('.hover-btn__add');
+  
+  addButton.forEach((button) => {
+    button.addEventListener('click', () => {
+      alert('Item added to the cart');
+    });
+  });
+
+  const addLikes = document.querySelectorAll('.extra-btn__like');
+  
+  addLikes.forEach((button) => {
+    button.addEventListener('click', () => {
+      button.textContent = 'Liked!';
+    });
+  });
+  
+  
+
   /*--add cladd hidden--*/
   let card = document.querySelectorAll('.card');
   for (let i = 8; i < card.length; i++) {
@@ -324,3 +342,5 @@ heroSlider.forEach((slide) => {
   })
 
 });
+
+
