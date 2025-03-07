@@ -1,0 +1,127 @@
+.main__about {
+  width: 100%;
+  margin-top: 5%;
+}
+
+.about__container {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.about__item-container {
+  max-width: 255px;
+  width: 100%;
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+
+.about__item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.about-item__image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.about-item__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  margin: 0;
+  padding: 0;
+}
+
+.about-item__text {
+  flex: 1;
+  font-size: 1em;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.about-item__title {
+  color: #3a3a3a;
+  font-size: 1.125em;
+  font-weight: 700;
+  margin-bottom: 6px;
+  opacity: 0.95;
+}
+
+.about-item__subtle {
+  color: #898989;
+  font-size: 1em;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+}
+
+.about-item1__image {
+  width: 40px;
+  height: 40px;
+  background: url('../../../assets/img/main_about/ABOUT-IMG1.png') center/contain no-repeat;
+}
+
+.about-item2__image {
+  width: 40px;
+  height: 40px;
+  background: url('../../../assets/img/main_about/ABOUT-IMG2.png') center/contain no-repeat;
+}
+
+.about-item3__image {
+  width: 40px;
+  height: 40px;
+  background: url('../../../assets/img/main_about/ABOUT-IMG3.png') center/contain no-repeat;
+}
+
+.about-item4__image {
+  width: 40px;
+  height: 40px;
+  background: url('../../../assets/img/main_about/ABOUT-IMG4.png') center/contain no-repeat;
+}
+
+.about__item-container:hover {
+  transform: translate(0, -10px);
+}
+
+@media screen and (max-width: 990px) {
+ .about__container {
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 5%;
+  }
+
+ .about__item-container {
+    max-width: 50%;
+    display: flex;
+  }
+
+.about__container {
+    width:30%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .about__item-container {
+    max-width: 260px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+}

@@ -1,0 +1,149 @@
+@import "../base.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg-light-beige);
+}
+
+.hero__wrapper {
+  margin: 2.5em 6.25em;
+  width: calc(100% - 12.5em);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5em;
+  width: 100%;
+  padding: 0;
+}
+
+.home-btn, .cart-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.home-btn svg, .cart-btn svg {
+  width: 24px;
+    height: 24px;
+}
+
+.header__title {
+  font-family: "Gilroy", sans-serif;
+  font-weight: bold;
+  color: var(--color-black);
+  font-size: 1.5em;
+}
+
+.header__btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: auto;
+}
+
+.btn {
+  height: auto;
+  width: 1.5em;
+  cursor: pointer;
+}
+
+.btn:hover {
+  fill: var(--color-primary);
+  stroke: var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+.btn img {
+  width: 100%;
+}
+
+.product {
+  height: 50em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product__title {
+  margin: 0;
+  font-family: "Gilroy", sans-serif;
+  color: var(--color-text-primary);
+  font-size: 2.5em;
+}
+
+.product__image {
+  width: 20em;
+}
+
+.product__description {
+  font-family: "Gilroy", sans-serif;
+  color: var(--color-text-secondary);
+  font-size: 1.5em;
+}
+
+.product__text {
+  font-family: "Gilroy", sans-serif;
+  color: var(--color-text-secondary);
+  font-size: 1em;
+  width: 20em;
+}
+
+.product__price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 20em;
+}
+
+.price__current {
+  font-family: "Gilroy", sans-serif;
+  color: var(--color-text-primary);
+  font-size: 1.25em;
+}
+
+.price__old {
+  font-family: "Gilroy", sans-serif;
+  text-decoration: line-through;
+  color: var(--color-text-light);
+  font-size: 1em;
+}
+
+.product__btn {
+  font-family: "Gilroy", sans-serif;
+  font-size: 1em;
+  height: 3em;
+  width: 15.3125em;
+  background-color: transparent;
+  border: 0.0625em solid var(--color-primary);
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.product__btn:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.header__title a {
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+@media screen and (max-width: 480px) {
+  .hero__wrapper {
+    margin: 0;
+  }
+
+  .product__title {
+    font-size: 1.5em;
+  }
+}

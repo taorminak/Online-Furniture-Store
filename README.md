@@ -46,6 +46,7 @@ git clone https://github.com/your-username/online-furniture-store.git
 ```
 
 ### 2. Navigate to the project directory
+
 Change into the project folder:
 
 ```bash
@@ -56,6 +57,6 @@ cd online-furniture-store
 
 Open the `index.html` file in your preferred web browser to view the website.
 
-# Deploy: 
-https://modern-furniture-corner.netlify.app/
+# Deploy:
 
+https://modern-furniture-corner.netlify.app/

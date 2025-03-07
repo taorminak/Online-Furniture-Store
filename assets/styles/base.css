@@ -1,0 +1,121 @@
+:root {
+  /* Main colors */
+  --color-primary: #e89f71;
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  /* Text colors */
+  --color-text-primary: #3a3a3a;
+  --color-text-secondary: #616161;
+  --color-text-light: #828282;
+
+  /* Background colors */
+  --color-bg-light: #f4f5f7;
+  --color-bg-beige: #f9f1e7;
+  --color-bg-light-beige: #fcf8f3;
+
+  /* Border colors */
+  --color-border: #d8d8d8;
+
+  --color-slider-bullet: #d8d8d8;
+  --color-slider-nav: #f6ddcc;
+
+  /* Button styles */
+  --btn-transition: all 0.3s ease;
+  --btn-hover-scale: scale(1.05);
+  --btn-active-scale: scale(0.95);
+  --btn-hover-shadow: 0 5px 15px rgba(232, 159, 113, 0.3);
+
+--z-overlay: 9;
+    --z-burger: 11;
+    --z-mobile-menu: 10;
+}
+
+/* Global button styles */
+.btn,
+.text-button,
+.product__btn,
+.rooms-btn,
+.hero__container_button,
+.profile__inputContainer-button,
+.profile__inputContainer-change-button,
+.profile__inputContainer-save-button,
+.btn-danger,
+.btn-primary,
+.footer-button,
+.cart-quantity-input,
+.hover-btn__add,
+.hover-btn__description {
+  transition: var(--btn-transition);
+}
+
+/* Hover state */
+.btn:hover,
+.text-button:hover,
+.product__btn:hover,
+.rooms-btn:hover,
+.hero__container_button:hover,
+.profile__inputContainer-button:hover,
+.profile__inputContainer-change-button:hover,
+.profile__inputContainer-save-button:hover,
+.btn-danger:hover,
+.btn-primary:hover,
+.footer-button:hover,
+.hover-btn__add:hover,
+.hover-btn__description:hover {
+  transform: var(--btn-hover-scale);
+  box-shadow: var(--btn-hover-shadow);
+}
+
+/* Active state */
+.btn:active,
+.text-button:active,
+.product__btn:active,
+.rooms-btn:active,
+.hero__container_button:active,
+.profile__inputContainer-button:active,
+.profile__inputContainer-change-button:active,
+.profile__inputContainer-save-button:active,
+.btn-danger:active,
+.btn-primary:active,
+.footer-button:active,
+.hover-btn__add:active,
+.hover-btn__description:active {
+  transform: var(--btn-active-scale);
+  box-shadow: none;
+}
+
+/* Focus state */
+.btn:focus,
+.text-button:focus,
+.product__btn:focus,
+.rooms-btn:focus,
+.hero__container_button:focus,
+.profile__inputContainer-button:focus,
+.profile__inputContainer-change-button:focus,
+.profile__inputContainer-save-button:focus,
+.btn-danger:focus,
+.btn-primary:focus,
+.footer-button:focus,
+.hover-btn__add:focus,
+.hover-btn__description:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(232, 159, 113, 0.4);
+}
+
+/* Reset default margins */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: "Gilroy", sans-serif;
+    overflow-x: hidden;
+}
+
+

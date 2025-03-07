@@ -1,3 +1,5 @@
+@import "../base.css";
+
 * {
   font-family: "Gilroy", sans-serif;
 }
@@ -15,6 +17,7 @@ html {
 }
 
 .header {
+  width: 100%;
   display: flex;
   height: 50px;
   justify-content: space-between;
@@ -25,39 +28,39 @@ html {
   font-weight: 700;
   font-size: 1.5em;
   line-height: 1.8em;
-  color: #000000;
+  color: var(--color-black);
 }
 
 .fa-home {
-  color: #3a3a3a;
+  color: var(--color-text-primary);
+}
+
+.profile {
+  padding: 2rem;
 }
 
 .profile__container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .profile__image {
-  width: 300px;
-  height: 300px;
-  margin-bottom: 40px;
+  margin-bottom: 1rem;
 }
 
 .profile__picture {
-  width: 300px;
-  height: 300px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
   object-fit: cover;
-  border-radius: 10px 100px / 120px;
 }
 
 .profile__inputContainer-change-button {
   padding: 10px;
   border: none;
-  background-color: #e89f71;
-  color: #f4f5f7;
+  background-color: var(--color-primary);
+  color: var(--color-bg-light);
   cursor: pointer;
 }
 
@@ -70,15 +73,17 @@ html {
 .profile__inputContainer-input {
   width: 200px;
   height: 45px;
-  font: 400 normal 1em/24px "Gilroy", sans-serif;
-  color: #828282;
-  background-color: #f4f5f7;
+  font:
+    400 normal 1em/24px "Gilroy",
+    sans-serif;
+  color: var(--color-text-light);
+  background-color: var(--color-bg-light);
   border: none;
 }
 
 .profile__inputContainer-button {
   margin-right: 20px;
-  background-color: #e89f71;
+  background-color: var(--color-primary);
   border: none;
   width: 45px;
   height: 45px;
@@ -86,16 +91,18 @@ html {
 }
 
 .footer-button_icon {
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .profile__inputContainer-save-button {
   height: 45px;
   padding: 10px;
-  font: 400 normal 1em/24px "Gilroy", sans-serif;
+  font:
+    400 normal 1em/24px "Gilroy",
+    sans-serif;
   border: none;
-  background-color: #e89f71;
-  color: #f4f5f7;
+  background-color: var(--color-primary);
+  color: var(--color-bg-light);
   cursor: pointer;
 }
 
@@ -104,17 +111,27 @@ html {
   text-align: center;
 }
 
-.cart-column {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid black;
-  margin-right: 1.5em;
-  padding-bottom: 10px;
-  margin-top: 10px;
+.content-section {
+  margin: 2rem auto;
+  max-width: 1000px;
+  padding: 0 1.5rem;
 }
 
 .cart-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cart-column {
   display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-black);
+  margin-right: 1.5em;
+  padding-bottom: 10px;
+  margin-top: 10px;
 }
 
 .cart-item {
@@ -124,7 +141,7 @@ html {
 .cart-price {
   width: 20%;
   font-size: 1.2em;
-  color: #3a3a3a;
+  color: var(--color-text-primary);
 }
 
 .cart-quantity {
@@ -132,7 +149,7 @@ html {
 }
 
 .cart-item-title {
-  color: #3a3a3a;
+  color: var(--color-text-primary);
   margin-left: 0.5em;
   font-size: 1.2em;
 }
@@ -144,24 +161,24 @@ html {
 }
 
 .btn-danger {
-  color: #f4f5f7;
-  background-color: #e89f71;
+  color: var(--color-bg-light);
+  background-color: var(--color-primary);
   border: none;
   border-radius: 0.3em;
   font-weight: bold;
 }
 
 .btn-danger:hover {
-  background-color: #e89f71;
+  background-color: var(--color-primary);
 }
 
 .cart-quantity-input {
   height: 34px;
   width: 50px;
   border-radius: 5px;
-  border: 1px solid #e89f71;
-  background-color: #f4f5f7;
-  color: #3a3a3a;
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-bg-light);
+  color: var(--color-text-primary);
   padding: 0;
   text-align: center;
   font-size: 1.2em;
@@ -169,7 +186,7 @@ html {
 }
 
 .cart-row:last-child {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--color-black);
 }
 
 .cart-row:last-child .cart-column {
@@ -185,12 +202,12 @@ html {
 .cart-total-title {
   font-weight: bold;
   font-size: 1.5em;
-  color: #3a3a3a;
+  color: var(--color-text-primary);
   margin-right: 20px;
 }
 
 .cart-total-price {
-  color: #3a3a3a;
+  color: var(--color-text-primary);
   font-size: 1.1em;
 }
 
@@ -203,19 +220,19 @@ html {
 .cart-header {
   font-weight: bold;
   font-size: 1.25em;
-  color: #3a3a3a;
+  color: var(--color-text-primary);
 }
 
 .btn-primary {
-  color: #f4f5f7;
-  background-color: #e89f71;
+  color: var(--color-bg-light);
+  background-color: var(--color-primary);
   border: none;
   border-radius: 0.3em;
   font-weight: bold;
 }
 
 .btn-primary:hover {
-  background-color: #e89f71;
+  background-color: var(--color-primary);
 }
 
 .btn {
@@ -227,7 +244,7 @@ html {
 
 .section-header {
   font-weight: normal;
-  color: #3a3a3a;
+  color: var(--color-text-primary);
   text-align: center;
   font-size: 2.5em;
 }
@@ -243,4 +260,63 @@ html {
 .section-heading {
   font-size: 2em;
   text-align: center;
+}
+
+.wishlist__container {
+  margin: 2rem auto;
+  max-width: 1000px;
+  padding: 0 1.5rem;
+}
+
+.wishlist-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.wishlist-column {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-black);
+  margin-right: 1.5em;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+.wishlist-item {
+  width: 45%;
+}
+
+.wishlist-price {
+  width: 20%;
+  font-size: 1.2em;
+  color: var(--color-text-primary);
+}
+
+.wishlist-item-title {
+  color: var(--color-text-primary);
+  margin-left: 0.5em;
+  font-size: 1.2em;
+}
+
+.wishlist-item-image {
+  width: 75px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.wishlist-header {
+  font-weight: bold;
+  font-size: 1.25em;
+  color: var(--color-text-primary);
+}
+
+.wishlist-row:last-child {
+  border-bottom: 1px solid var(--color-black);
+}
+
+.wishlist-row:last-child .wishlist-column {
+  border: none;
 }

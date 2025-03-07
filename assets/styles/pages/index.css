@@ -1,3 +1,5 @@
+@import "../base.css";
+
 * {
   font-family: "Gilroy", sans-serif;
 }
@@ -28,7 +30,7 @@ html {
 
 .furniture__label {
   text-align: center;
-  color: #616161;
+  color: var(--color-text-secondary);
   font-weight: 600;
   line-height: 150%;
   font-size: 1.25em;
@@ -43,7 +45,7 @@ html {
   font-weight: 700;
   font-size: 2.5em;
   line-height: 120%;
-  color: #3a3a3a;
+  color: var(--color-text-primary);
 }
 
 .furniture__body {
@@ -133,20 +135,20 @@ html {
 
 /*footer*/
 
-@media screen and (min-width:768px) {
+@media screen and (min-width: 768px) {
+.footer {
+  width: 85%;
+  margin: 0 auto;
+}
 
   .footer-container {
     grid-template-rows: repeat(6, 1fr);
     grid-auto-flow: column;
-    column-gap: 4em;
-    row-gap: 1em;
     display: grid;
-    margin-left: 6.25em;
-    margin-right: 6.25em;
     margin-top: 5.5em;
     margin-bottom: 3.1em;
     padding-top: 5em;
-    border-top: solid 1px #d8d8d8;
+    border-top: solid 1px var(--color-border);
   }
 
   .text-bold {
@@ -154,7 +156,7 @@ html {
     font-weight: 700;
     font-size: 1.5em;
     line-height: 1.8em;
-    color: #000000;
+    color: var(--color-black);
     text-decoration: none;
   }
 
@@ -163,7 +165,7 @@ html {
     font-weight: 400;
     font-size: 1em;
     line-height: 150%;
-    color: #616161;
+    color: var(--color-text-secondary);
     text-decoration: none;
   }
 
@@ -181,7 +183,7 @@ html {
   }
 
   .footer-button {
-    background-color: #e89f71;
+    background-color: var(--color-primary);
     border: none;
     width: 45px;
     height: 45px;
@@ -189,13 +191,13 @@ html {
   }
 
   .footer-button_icon {
-    color: #ffffff;
+    color: var(--color-white);
   }
 
   .footer-input {
     border: none;
-    background-color: #f4f5f7;
-    color: #828282;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-light);
     width: 100%;
   }
 
@@ -203,18 +205,16 @@ html {
     grid-row: 2/4;
     width: 249px;
     height: 45px;
-    background-color: #f4f5f7;
+    background-color: var(--color-bg-light);
     display: flex;
     justify-content: space-between;
   }
-
 }
 
-@media screen and (max-width:767px) {
-
+@media screen and (max-width: 767px) {
   .footer {
     width: 100%;
-    border-top: solid 1px #d8d8d8;
+    border-top: solid 1px var(--color-border);
   }
 
   .footer-container {
@@ -233,7 +233,7 @@ html {
     font-weight: 700;
     font-size: 1.5em;
     line-height: 29.02px;
-    color: #000000;
+    color: var(--color-black);
     text-align: center;
   }
 
@@ -242,7 +242,7 @@ html {
     font-weight: 400;
     font-size: 1em;
     line-height: 24px;
-    color: #616161;
+    color: var(--color-text-secondary);
     text-align: center;
   }
 
@@ -366,11 +366,11 @@ html {
     margin: auto;
     display: flex;
     justify-content: space-between;
-    background-color: #f4f5f7;
+    background-color: var(--color-bg-light);
   }
 
   .footer-button {
-    background-color: #e89f71;
+    background-color: var(--color-primary);
     border: none;
     width: 45px;
     height: 45px;
@@ -378,13 +378,129 @@ html {
   }
 
   .footer-button_icon {
-    color: #ffffff;
+    color: var(--color-white);
   }
 
   .footer-input {
     border: none;
-    background-color: #f4f5f7;
-    color: #828282;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-light);
     width: 100%;
   }
+
+  /* Ensure hover effects work on mobile too */
+  .text-grey:hover,
+  .header-1:hover {
+    color: var(--color-primary);
+    transform: var(--btn-hover-scale);
+  }
+}
+
+/* Footer styles */
+.footer-container {
+  grid-template-rows: repeat(6, 1fr);
+  grid-auto-flow: column;
+  display: grid;
+  margin: 5.5em 0px 3.1em 0px;
+  padding-top: 5em;
+  border-top: solid 1px var(--color-border);
+}
+
+/* Footer text styles with hover effects */
+.text-bold {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.5em;
+  line-height: 1.8em;
+  color: var(--color-black);
+  text-decoration: none;
+  transition: var(--btn-transition);
+}
+
+.text-grey {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1em;
+  line-height: 150%;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: var(--btn-transition);
+  cursor: pointer;
+}
+
+/* Hover effects for footer links - excluding first column */
+.text-2-1:hover,
+.text-2-2:hover,
+.text-2-3:hover,
+.text-2-4:hover,
+.text-2-5:hover,
+.text-3-1:hover,
+.text-3-2:hover,
+.text-3-3:hover,
+.text-3-4:hover,
+.text-4-1:hover,
+.text-4-2:hover,
+.text-4-3:hover {
+  color: var(--color-primary);
+  transform: var(--btn-hover-scale);
+}
+
+.text-2-1:active,
+.text-2-2:active,
+.text-2-3:active,
+.text-2-4:active,
+.text-2-5:active,
+.text-3-1:active,
+.text-3-2:active,
+.text-3-3:active,
+.text-3-4:active,
+.text-4-1:active,
+.text-4-2:active,
+.text-4-3:active {
+  transform: var(--btn-active-scale);
+}
+
+.header-1:hover {
+  color: var(--color-primary);
+  transform: var(--btn-hover-scale);
+}
+
+.header-1:active {
+  transform: var(--btn-active-scale);
+}
+
+/* Footer input styles */
+.grid-item-input {
+  width: 249px;
+  height: 45px;
+  background-color: var(--color-bg-light);
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-input {
+  border: none;
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+  width: 100%;
+  padding: 0 15px;
+  transition: var(--btn-transition);
+}
+
+.footer-input:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--color-primary);
+}
+
+.footer-button {
+  background-color: var(--color-primary);
+  border: none;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  transition: var(--btn-transition);
+}
+
+.footer-button_icon {
+  color: var(--color-white);
 }

@@ -1,0 +1,13 @@
+{
+  "name": "online-furniture-store",
+  "version": "1.0.0",
+  "description": "Welcome to the Online Furniture Store project! This is an e-commerce platform that allows customers to browse, purchase, and manage their furniture shopping experience. It includes a shopping cart, client profile management, and local storage functionality.",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "lint": "eslint . --ext .js,.vue",
+    "lint:fix": "eslint . --ext .js,.vue --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

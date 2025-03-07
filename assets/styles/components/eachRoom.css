@@ -1,0 +1,284 @@
+@import "../base.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fcf8f3;
+}
+
+.hero__wrapper {
+  margin: 2.5em 6.25em;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5em;
+}
+
+.home-btn, .cart-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.home-btn svg,
+.cart-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.header__title {
+  font-family: "Gilroy", sans-serif;
+  font-weight: bold;
+  color: #000000;
+  font-size: 1.5em;
+}
+
+.header__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 4em;
+}
+
+.btn {
+  height: auto;
+  width: 1.5em;
+  cursor: pointer;
+}
+
+.btn:hover {
+  fill: #e89f71;
+  stroke: #e89f71;
+  transition: all 0.3s ease;
+}
+
+.btn img {
+  width: 100%;
+}
+
+.room {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.room__title {
+  margin: 0;
+  margin-bottom: 1.5em;
+  font-family: "Gilroy", sans-serif;
+  color: #3a3a3a;
+  font-size: 2.5em;
+  text-align: center;
+}
+
+.room__container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2em;
+}
+
+.room__block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2em;
+}
+
+.room__card {
+  position: relative;
+  line-height: 0%;
+}
+
+.room__img {
+  width: 100%;
+  object-fit: cover;
+  height: auto;
+  cursor: pointer;
+}
+
+.btn__img {
+  z-index: 2;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 1s ease;
+  font-family: "Gilroy", sans-serif;
+  font-size: 1em;
+  height: 3em;
+  width: 12.625em;
+  background-color: #ffffff;
+  border: none;
+  color: #e89f71;
+  cursor: pointer;
+}
+
+.btn__img:hover {
+  background-color: #e89f71;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.overlay {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.room__card:hover .btn__img {
+  opacity: 1;
+}
+
+.room__card:hover .overlay {
+  opacity: 0.72;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: #3a3a3a;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.header__title a {
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+@media screen and (max-width: 1024px) {
+  .btn__img {
+    width: 9em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .herp__wrapper {
+    margin: 2.5em 5em;
+  }
+
+  .room__container {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero__wrapper {
+    margin: 0;
+  }
+
+  .room__title {
+    font-size: 1.5em;
+  }
+}
+
+.rooms {
+  margin-left: 6.25em;
+  margin-right: 6.25em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rooms__title {
+  font-family: "Gilroy", sans-serif;
+  color: var(--color-text-primary);
+  font-size: 2.5em;
+  text-align: center;
+  margin-top: 2.75em;
+  margin-bottom: 2em;
+}
+
+.room-card:hover .room-overlay {
+  opacity: 0.72;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: var(--color-text-primary);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.room-hover-btn {
+  font-family: "Gilroy", sans-serif;
+  font-size: 1em;
+  height: 3em;
+  width: 12.625em;
+  margin-bottom: 1.5em;
+  background-color: var(--color-white);
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.room-card__info {
+  background-color: var(--color-bg-light);
+  height: 100%;
+  padding-left: 1em;
+  padding-right: 1.25em;
+}
+
+.room-info__title {
+  font-family: "Gilroy", sans-serif;
+  color: var(--color-text-primary);
+  margin-top: 1em;
+  margin-bottom: 0;
+  font-size: 1.5em;
+}
+
+.room-info__description {
+  font-family: "Gilroy", sans-serif;
+  color: var(--color-text-secondary);
+  font-size: 1em;
+}
+
+.room-hover-btn:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.room-search {
+  border-bottom: 0.25px solid var(--color-text-light);
+  border-top: 0.5px solid var(--color-text-light);
+  display: flex;
+  align-items: center;
+  padding: 0 2em;
+  margin: 0;
+  background-color: var(--color-white);
+  color: var(--color-text-secondary);
+  justify-content: space-between;
+}
+
+.room-search:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.rooms-btn {
+  font-family: "Gilroy", sans-serif;
+  font-size: 1em;
+  height: 3em;
+  width: 15.3125em;
+  background-color: transparent;
+  border: 0.0625em solid var(--color-primary);
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.rooms-btn:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}

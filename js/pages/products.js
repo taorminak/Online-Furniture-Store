@@ -1,85 +1,84 @@
 /*---products JSON---*/
 let productsJSON = `[{
     "name":"Syltherine",
-    "picture":"./assets/images/ourProducts/image1.png",
+    "picture":"../assets/images/ourProducts/image1.png",
     "more":"Stylish cafe chair",
     "price":"$2500",
     "oldPrice":"$3500"
 }, {
     "name":"Leviosa",
-    "picture":"./assets/images/ourProducts/image2.png",
+    "picture":"../assets/images/ourProducts/image2.png",
     "more":"Stylish cafe chair",
     "price":"$2500",
     "oldPrice":""
 }, {
     "name":"Lolito",
-    "picture":"./assets/images/ourProducts/image3.png",
+    "picture":"../assets/images/ourProducts/image3.png",
     "more":"Luxury big sofa",
     "price":"$7000",
     "oldPrice":"$14000"
 }, {
     "name":"Respira",
-    "picture":"./assets/images/ourProducts/image4.png",
+    "picture":"../assets/images/ourProducts/image4.png",
     "more":"Minimalist fan",
     "price":"$500",
     "oldPrice":""
 }, {
     "name":"Grifo",
-    "picture":"./assets/images/ourProducts/image5.png",
+    "picture":"../assets/images/ourProducts/image5.png",
     "more":"Night lamp",
     "price":"$1500",
     "oldPrice":""
 }, {
     "name":"Muggo",
-    "picture":"./assets/images/ourProducts/image6.png",
+    "picture":"../assets/images/ourProducts/image6.png",
     "more":"Small mug",
     "price":"$150",
     "oldPrice":""
 }, {
     "name":"Pingky",
-    "picture":"./assets/images/ourProducts/image7.png",
+    "picture":"../assets/images/ourProducts/image7.png",
     "more":"Cute bed set",
     "price":"$7000",
     "oldPrice":"$14000"
 }, {
     "name":"Potty",
-    "picture":"./assets/images/ourProducts/image8.png",
+    "picture":"../assets/images/ourProducts/image8.png",
     "more":"Minimalist flower pot",
     "price":"$500",
     "oldPrice":""
 }, {
     "name":"Brimnes",
-    "picture":"./assets/images/ourProducts/image9.png",
+    "picture":"../assets/images/ourProducts/image9.png",
     "more":"Minimalist wood bench",
     "price":"$6500",
     "oldPrice":"$13000"
 }, {
     "name":"Perjohan",
-    "picture":"./assets/images/ourProducts/image10.png",
+    "picture":"../assets/images/ourProducts/image10.png",
     "more":"Comfortable bench",
     "price":"$2500",
     "oldPrice":""
 }, {
     "name":"Rust",
-    "picture":"./assets/images/ourProducts/image11.png",
+    "picture":"../assets/images/ourProducts/image11.png",
     "more":"Stylish chair",
     "price":"$5000",
     "oldPrice":"$10000"
 }, {
     "name":"Fyresdal",
-    "picture":"./assets/images/ourProducts/image12.png",
+    "picture":"../assets/images/ourProducts/image12.png",
     "more":"Minimalist flower pot",
     "price":"$5.500",
     "oldPrice":"Rp. 11.000.000"
 }]`;
 
-
 let products = JSON.parse(productsJSON);
-let productsArr = products.map(i => i.name);
+let productsArr = products.map((i) => i.name);
 
 /*---creating cards---*/
-document.addEventListener("DOMContentLoaded", function (event) {
-  let productsCards = '';
+document.addEventListener("DOMContentLoaded", function () {
+  let productsCards = "";
 
   for (let product of products) {
     productsCards += `<div class="card elastic">
@@ -189,61 +188,56 @@ document.addEventListener("DOMContentLoaded", function (event) {
             </div>
           </div>
           <div class="overlay"></div>
-        </div>`
+        </div>`;
   }
 
-  document.querySelector('.cards').innerHTML = productsCards;
+  document.querySelector(".cards").innerHTML = productsCards;
 
+  const addButton = document.querySelectorAll(".hover-btn__add");
 
-  const addButton = document.querySelectorAll('.hover-btn__add');
-  
   addButton.forEach((button) => {
-    button.addEventListener('click', () => {
-      alert('Item added to the cart');
+    button.addEventListener("click", () => {
+      alert("Item added to the cart");
     });
   });
 
-  const addLikes = document.querySelectorAll('.extra-btn__like');
-  
+  const addLikes = document.querySelectorAll(".extra-btn__like");
+
   addLikes.forEach((button) => {
-    button.addEventListener('click', () => {
-      button.textContent = 'Liked!';
+    button.addEventListener("click", () => {
+      button.textContent = "Liked!";
     });
   });
-  
-  
 
   /*--add cladd hidden--*/
-  let card = document.querySelectorAll('.card');
+  let card = document.querySelectorAll(".card");
   for (let i = 8; i < card.length; i++) {
-    card[i].classList.add('hidden');
+    card[i].classList.add("hidden");
   }
 
   /*---more/less btn---*/
-  let cards = document.querySelectorAll('.card.hidden');
-  let moreBtn = document.querySelector('.more-btn');
-  let lessBtn = document.querySelector('.less-btn');
-
+  let cards = document.querySelectorAll(".card.hidden");
+  let moreBtn = document.querySelector(".more-btn");
+  let lessBtn = document.querySelector(".less-btn");
 
   moreBtn.addEventListener("click", function () {
-    cards.forEach(card => {
-      card.classList.remove('hidden');
+    cards.forEach((card) => {
+      card.classList.remove("hidden");
     });
-    moreBtn.classList.add('hidden');
-    lessBtn.classList.remove('hidden');
-
+    moreBtn.classList.add("hidden");
+    lessBtn.classList.remove("hidden");
   });
 
   lessBtn.addEventListener("click", function () {
-    cards.forEach(card => {
-      card.classList.add('hidden');
+    cards.forEach((card) => {
+      card.classList.add("hidden");
     });
-    lessBtn.classList.add('hidden');
-    moreBtn.classList.remove('hidden');
+    lessBtn.classList.add("hidden");
+    moreBtn.classList.remove("hidden");
   });
 
   /*---description btn---*/
-  let descriptionBtn = document.querySelectorAll('.hover-btn__description');
+  let descriptionBtn = document.querySelectorAll(".hover-btn__description");
   for (let i = 0; i < descriptionBtn.length; i++) {
     descriptionBtn[i].addEventListener("click", function () {
       window.location = `http://127.0.0.1:5500/productsPages/${productsArr[i]}/index.html`;
@@ -251,24 +245,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
   }
 
   /*---header products select---*/
-  let selectProduct = document.querySelector('#header__select-products');
+  let selectProduct = document.querySelector("#header__select-products");
   selectProduct.addEventListener("change", function () {
     window.location = `http://127.0.0.1:5500/productsPages/${this.value}/index.html`;
   });
 
-
   /*---header rooms select---*/
-  let selectRoom = document.querySelector('#header__select-rooms');
+  let selectRoom = document.querySelector("#header__select-rooms");
   selectRoom.addEventListener("change", function () {
     window.location = `http://127.0.0.1:5500/roomsPages/${this.value}/index.html`;
   });
-
 });
 
-
 /*---search card creation---*/
-document.addEventListener("DOMContentLoaded", function (event) {
-  let productsCards = '';
+document.addEventListener("DOMContentLoaded", function () {
+  let productsCards = "";
 
   for (let product of products) {
     productsCards += `<div class="container">
@@ -284,63 +275,56 @@ document.addEventListener("DOMContentLoaded", function (event) {
           <p>${product.more}</p>
         </div>
         </div>
-        </div>`
+        </div>`;
   }
-  document.querySelector('.header__search-options').innerHTML = productsCards;
-
+  document.querySelector(".header__search-options").innerHTML = productsCards;
 
   /*---search on a page---*/
-  document.querySelector('.header-input').oninput = function () {
+  document.querySelector(".header-input").oninput = function () {
     let val = this.value.trim();
-    let elasticItems = document.querySelectorAll('.card-search');
-    if (val != '') {
+    let elasticItems = document.querySelectorAll(".card-search");
+    if (val != "") {
       elasticItems.forEach(function (elem) {
         if (elem.innerText.search(RegExp(val, "gi")) == -1) {
-          elem.classList.add('hidden');
+          elem.classList.add("hidden");
         } else {
-          elem.classList.remove('hidden');
+          elem.classList.remove("hidden");
         }
       });
     } else {
       elasticItems.forEach(function (elem) {
-        elem.classList.add('hidden');
+        elem.classList.add("hidden");
       });
     }
-
-  }
+  };
 
   /*---open search cards--*/
-  let cardSearch = document.querySelectorAll('.card-search');
+  let cardSearch = document.querySelectorAll(".card-search");
   for (let i = 0; i < cardSearch.length; i++) {
     cardSearch[i].addEventListener("click", function () {
       window.location = `http://127.0.0.1:5500/productsPages/${productsArr[i]}/index.html`;
     });
   }
-
 });
 
 /*---Explore more btn---*/
-document.querySelector('.text-button').addEventListener('click', function () {
+document.querySelector(".text-button").addEventListener("click", function () {
   window.location = `http://127.0.0.1:5500/roomsPages/Bedroom/index.html`;
 });
 
 /*---header fixed---*/
-let headerFixed = document.querySelector('.header_container');
-window.addEventListener('scroll', () => {
+let headerFixed = document.querySelector(".header_container");
+window.addEventListener("scroll", () => {
   if (window.scrollY > 50) {
     headerFixed.classList.add("header-white");
   } else {
     headerFixed.classList.remove("header-white");
   }
-
 });
 /*--header-hero-slider---*/
-let heroSlider = document.querySelectorAll('.main-slide__container');
+let heroSlider = document.querySelectorAll(".main-slide__container");
 heroSlider.forEach((slide) => {
-  slide.addEventListener('click', function () {
+  slide.addEventListener("click", function () {
     window.location = `http://127.0.0.1:5500/productsPages/${this.id}/index.html`;
-  })
-
+  });
 });
-
-

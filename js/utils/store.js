@@ -9,7 +9,7 @@ for (let i = 0; i < array.length; i++) {
   addItemToCart(ind, title, price, imageSrc);
 }
 
-let list = JSON.parse(localStorage.getItem("wishlist"));
+let list = JSON.parse(localStorage.getItem("wishlist")) || [];
 
 for (let i = 0; i < list.length; i++) {
   let titleWL = list[i].titleWL;
@@ -25,7 +25,7 @@ function addItemToWishlist(index, titleWL, priceWL, imageSrcWL) {
   wishlistRow.classList.add("wishlist-row");
   let wishlistItems = document.getElementsByClassName("wishlist-items")[0];
   let wishlistItemNames = wishlistItems.getElementsByClassName(
-    "wishlist-item-title"
+    "wishlist-item-title",
   );
   for (let i = 0; i < wishlistItemNames.length; i++) {
     if (wishlistItemNames[i].innerText == titleWL) {
@@ -55,7 +55,7 @@ function removeWishlistItem(event) {
   parent.remove();
 }
 
-function removeFromWishlistLS(index) {
+export function removeFromWishlistLS(index) {
   list.splice(index, 1);
   localStorage.setItem("wishlist", JSON.stringify(list));
 }
@@ -99,7 +99,7 @@ function removeCartItem(event) {
   updateCartTotal();
 }
 
-function removeFromLS(ind) {
+export function removeFromLS(ind) {
   array.splice(ind, 1);
   localStorage.setItem("data", JSON.stringify(array));
   console.log(ind);
@@ -110,8 +110,6 @@ if (document.readyState == "loading") {
 } else {
   ready();
 }
-
-
 
 function ready() {
   let removeCartItemButtons = document.getElementsByClassName("btn-danger");
@@ -160,7 +158,7 @@ function updateCartTotal() {
     let cartRow = cartRows[i];
     let priceElement = cartRow.getElementsByClassName("cart-price")[0];
     let quantityElement = cartRow.getElementsByClassName(
-      "cart-quantity-input"
+      "cart-quantity-input",
     )[0];
     let price = parseFloat(priceElement.innerText.replace("$", ""));
     let quantity = quantityElement.value;

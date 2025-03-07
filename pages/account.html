@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Funiro - Manage your account, wishlist and shopping cart"
+    />
+
+    <!-- Preload critical fonts -->
+    <link
+      rel="preload"
+      href="https://fonts.cdnfonts.com/css/gilroy-bold"
+      as="style"
+    />
+    <link
+      rel="preload"
+      href="../assets/fonts/fontawesome-free-6.2.1-web/css/fontawesome.css"
+      as="style"
+    />
+
+    <!-- Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="../assets/fonts/fontawesome-free-6.2.1-web/css/fontawesome.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/fonts/fontawesome-free-6.2.1-web/css/solid.css"
+    />
+
+    <!-- Base styles -->
+    <link rel="stylesheet" href="../assets/styles/normalize.css" />
+    <link rel="stylesheet" href="../assets/styles/base.css" />
+
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="../assets/styles/layout/header.css" />
+
+    <!-- Page specific styles -->
+    <link rel="stylesheet" href="../assets/styles/pages/account.css" />
+
+    <title>Funiro - My Account</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo">
+        <a href="../index.html">Funiro.</a>
+      </div>
+      <div class="header__btn">
+        <a href="../index.html">
+          <i class="fa fa-home" aria-hidden="true"></i>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Profile -->
+      <section class="profile">
+        <div class="profile__container">
+          <div class="profile__image">
+            <img
+              src="../assets/profile/profile.jpeg"
+              alt="profile picture"
+              class="profile__picture"
+            />
+          </div>
+          <button class="profile__inputContainer-change-button">
+            Change avatar
+          </button>
+          <div class="profile__inputContainer"></div>
+          <div class="profile__message"></div>
+          <div class="profile__content">
+            <h1 class="hero-section__heading">Ivan Petrov</h1>
+            <p class="profile__address">Moscow, Russia</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cart -->
+      <section class="container content-section" id="cart">
+        <h2 class="section-heading">Cart</h2>
+        <div class="cart-row">
+          <span class="cart-item cart-header cart-column">Item</span>
+          <span class="cart-price cart-header cart-column">Price</span>
+          <span class="cart-quantity cart-header cart-column">Quantity</span>
+        </div>
+        <div class="cart-items">
+          <!-- Here will be displayed products from the cart -->
+        </div>
+        <div class="cart-total">
+          <strong class="cart-total-title">Total</strong>
+          <span class="cart-total-price">$0</span>
+        </div>
+        <button class="btn btn-primary btn-purchase" type="button">
+          Purchase
+        </button>
+      </section>
+
+      <!-- Wishlist -->
+      <section class="wishlist__container" id="wishlist">
+        <div class="wishlist__heading">
+          <h2 class="section-heading">Wishlist</h2>
+          <div class="wishlist-row">
+            <span class="wishlist-item wishlist-header wishlist-column"
+              >Item</span
+            >
+            <span class="wishlist-price wishlist-header wishlist-column"
+              >Price</span
+            >
+            <span class="wishlist-quantity wishlist-header wishlist-column"
+              >Action</span
+            >
+          </div>
+          <div class="wishlist-items">
+            <!-- Here will be displayed products from the wishlist -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Scripts -->
+    <script type="module" src="../js/pages/account.js"></script>
+    <script type="module" src="../js/utils/store.js"></script>
+  </body>
+</html>

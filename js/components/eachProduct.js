@@ -1,9 +1,8 @@
 /*---home btn---*/
-let home = document.querySelector('.home-btn');
-home.addEventListener('click', function () {
+let home = document.querySelector(".home-btn");
+home.addEventListener("click", function () {
   window.location = `http://127.0.0.1:5500/`;
 });
-
 
 /*---to local storage---*/
 let addToCartButtons = document.getElementsByClassName("product__btn");
@@ -27,4 +26,3 @@ function toLS(title, price, imageSrc) {
   data.push(itemToLS);
   localStorage.setItem("data", JSON.stringify(data));
 }
-
