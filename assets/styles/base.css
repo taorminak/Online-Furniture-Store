@@ -26,9 +26,9 @@
   --btn-active-scale: scale(0.95);
   --btn-hover-shadow: 0 5px 15px rgba(232, 159, 113, 0.3);
 
---z-overlay: 9;
-    --z-burger: 11;
-    --z-mobile-menu: 10;
+  --z-overlay: 9;
+  --z-burger: 11;
+  --z-mobile-menu: 10;
 }
 
 /* Global button styles */
@@ -105,17 +105,15 @@
 
 /* Reset default margins */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    font-family: "Gilroy", sans-serif;
-    overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: "Gilroy", sans-serif;
+  overflow-x: hidden;
 }
-
-

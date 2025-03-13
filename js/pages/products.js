@@ -313,7 +313,7 @@ document.querySelector(".text-button").addEventListener("click", function () {
 });
 
 /*---header fixed---*/
-let headerFixed = document.querySelector(".header_container");
+let headerFixed = document.querySelector(".header__container");
 window.addEventListener("scroll", () => {
   if (window.scrollY > 50) {
     headerFixed.classList.add("header-white");

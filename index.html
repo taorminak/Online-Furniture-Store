@@ -27,10 +27,9 @@
       rel="stylesheet"
       href="/assets/fonts/fontawesome-free-6.2.1-web/css/solid.css"
     />
-    <link
-      rel="stylesheet"
-      href="./ass ets/fonts/fontawesome-free-6.2.1-web/css/regular.css"
-    />
+
+    <!-- Favicon -->
+    <link href="favicon.png" rel="icon" type="image/png" />
 
     <!-- Styles -->
     <link rel="stylesheet" href="./assets/styles/normalize.css" />
@@ -52,7 +51,11 @@
     <header class="header">
       <div class="header__container">
         <!-- Burger Menu Button (initially hidden) -->
-        <button class="header__burger" aria-label="Toggle menu" aria-expanded="false">
+        <button
+          class="header__burger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
           <span class="burger-line"></span>
           <span class="burger-line"></span>
           <span class="burger-line"></span>
@@ -60,11 +63,11 @@
 
         <!-- Existing desktop navigation -->
         <ul class="header__navigation">
-          <div class="header__logo">
+          <li class="header__logo">
             <a href="./index.html">Funiro.</a>
-          </div>
+          </li>
 
-          <li>
+          <li class="header__item">
             <select id="header__select-products">
               <option value="">Products</option>
               <option value="Syltherine">Syltherine</option>
@@ -81,7 +84,7 @@
               <option value="Fyresdal">Fyresdal</option>
             </select>
           </li>
-          <li class="li__rooms">
+          <li class="header__item li__rooms">
             <select id="header__select-rooms">
               <option value="">Rooms</option>
               <option value="Bedroom">Bedroom</option>
@@ -93,12 +96,12 @@
               <option value="Hallway">Hallway</option>
             </select>
           </li>
-          <li class="li__inspirations">
+          <li class="header__item li__inspirations">
             <a href="#furniture" class="header__navigation_inspirations"
               >Inspirations</a
             >
           </li>
-          <li class="li__search">
+          <li class="header__item li__search">
             <div class="header__search">
               <i class="fa-regular fa-magnifying-glass"></i>
               <input
@@ -135,7 +138,72 @@
 
         <!-- Mobile menu container (initially hidden) -->
         <div class="header__mobile-menu">
-          <!-- Navigation items will be cloned here by JavaScript for mobile -->
+          <ul class="mobile-nav">
+            <li class="mobile-nav__item">
+              <div class="mobile-nav__title" data-dropdown="products">
+                Products
+              </div>
+              <div class="mobile-dropdown">
+                <a href="./productsPages/Syltherine/index.html">Syltherine</a>
+                <a href="./productsPages/Leviosa/index.html">Leviosa</a>
+                <a href="./productsPages/Lolito/index.html">Lolito</a>
+                <a href="./productsPages/Respira/index.html">Respira</a>
+                <a href="./productsPages/Grifo/index.html">Grifo</a>
+                <a href="./productsPages/Muggo/index.html">Muggo</a>
+                <a href="./productsPages/Pingky/index.html">Pingky</a>
+                <a href="./productsPages/Potty/index.html">Potty</a>
+                <a href="./productsPages/Brimnes/index.html">Brimnes</a>
+                <a href="./productsPages/Perjohan/index.html">Perjohan</a>
+                <a href="./productsPages/Rust/index.html">Rust</a>
+                <a href="./productsPages/Fyresdal/index.html">Fyresdal</a>
+              </div>
+            </li>
+            <li class="mobile-nav__item">
+              <div class="mobile-nav__title" data-dropdown="rooms">Rooms</div>
+              <div class="mobile-dropdown">
+                <a href="./roomsPages/Bedroom/index.html">Bedroom</a>
+                <a href="./roomsPages/LivingRoom/index.html">Living Room</a>
+                <a href="./roomsPages/Kitchen/index.html">Kitchen</a>
+                <a href="./roomsPages/DiningRoom/index.html">Dining Room</a>
+                <a href="./roomsPages/Bathroom/index.html">Bathroom</a>
+                <a href="./roomsPages/KidsRoom/index.html">Kids' Room</a>
+                <a href="./roomsPages/Hallway/index.html">Hallway</a>
+              </div>
+            </li>
+            <li class="mobile-nav__item">
+              <a href="#furniture" class="mobile-nav__link">Inspirations</a>
+            </li>
+            <li class="mobile-nav__item">
+              <div class="mobile-search">
+                <input
+                  type="text"
+                  placeholder="Search for..."
+                  class="mobile-search__input"
+                />
+                <i class="fa-regular fa-magnifying-glass"></i>
+              </div>
+              <div class="mobile-search__results"></div>
+            </li>
+            <li class="mobile-nav__item mobile-profile">
+              <a
+                href="./pages/account.html#wishlist"
+                class="mobile-profile__link"
+              >
+                <i class="fa-regular fa-heart"></i> Wishlist
+              </a>
+              <a href="./pages/account.html#cart" class="mobile-profile__link">
+                <i class="fa-regular fa-cart-shopping"></i> Cart
+              </a>
+              <a href="./pages/account.html" class="mobile-profile__link">
+                <img
+                  src="./assets/profile/profile.jpeg"
+                  alt="profile"
+                  class="mobile-profile__img"
+                />
+                Profile
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </header>
@@ -143,12 +211,12 @@
     <main>
       <!-- Hero Section -->
       <section class="hero__wrapper">
-        <section class="hero__container">
+        <div class="hero__container">
           <div class="hero__container_info">
             <div class="hero__container_small">
-              <div class="hero__container_title">
+              <h2 class="hero__container_title">
                 High-Quality Furniture Just For You
-              </div>
+              </h2>
               <div class="hero__container_description">
                 Our furniture is made from selected and best quality materials
                 that are suitable for your dream home
@@ -156,7 +224,7 @@
               <a href="#products" class="hero__container_button">Shop Now</a>
             </div>
           </div>
-        </section>
+        </div>
 
         <!-- main__container_slider -->
         <div class="slider__container">
@@ -245,10 +313,11 @@
       <div class="main">
         <div class="main__about">
           <div class="about__container">
-
             <div class="about__item-container about__item1-container">
               <div class="about__item about__item1">
-                <div class="about-item__image-container about-item1__image-container">
+                <div
+                  class="about-item__image-container about-item1__image-container"
+                >
                   <div class="about-item__image about-item1__image"></div>
                 </div>
                 <div class="about-item__text about-item1__text">
@@ -264,9 +333,11 @@
 
             <div class="about__item-container about__item2-container">
               <div class="about__item about__item2">
-                <div class="about-item__image-container about-item2__image-container">
-                <div class="about-item__image about-item2__image"></div>
-              </div>
+                <div
+                  class="about-item__image-container about-item2__image-container"
+                >
+                  <div class="about-item__image about-item2__image"></div>
+                </div>
                 <div class="about-item__text about-item2__text">
                   <p class="about-item__title about-item2__title">
                     Warrany Protection
@@ -280,8 +351,11 @@
 
             <div class="about__item-container about__item3-container">
               <div class="about__item about__item3">
-                <div class="about-item__image-container about-item3__image-container">
-                <div class="about-item__image about-item3__image"></div></div>
+                <div
+                  class="about-item__image-container about-item3__image-container"
+                >
+                  <div class="about-item__image about-item3__image"></div>
+                </div>
                 <div class="about-item__text about-item3__text">
                   <p class="about-item__title about-item3__title">
                     Free Shipping
@@ -295,9 +369,11 @@
 
             <div class="about__item-container about__item4-container">
               <div class="about__item about__item4">
-                <div class="about-item__image-container about-item4__image-container">
-                <div class="about-item__image about-item4__image"></div>
-              </div>
+                <div
+                  class="about-item__image-container about-item4__image-container"
+                >
+                  <div class="about-item__image about-item4__image"></div>
+                </div>
                 <div class="about-item__text about-item4__text">
                   <p class="about-item__title about-item4__title">
                     24 / 7 Support
@@ -308,7 +384,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -326,7 +401,7 @@
       <!-- Beautiful rooms -->
       <section class="container-rooms">
         <div class="text">
-          <a name="rooms"></a>
+          <a id="rooms"></a>
           <h3 class="text-header">50+ Beautiful rooms inspiration</h3>
           <p class="text-paragraph">
             Our designer already made a lot of beautiful prototipe of rooms that
@@ -388,7 +463,7 @@
       <!-- Furniture -->
       <section class="furniture">
         <div class="furniture__container">
-          <a name="furniture"></a>
+          <a id="furniture"></a>
           <div class="furniture__label">Share your setup with</div>
           <h2 class="furniture__title title">#FuniroFurniture</h2>
           <div data-speed="0.01" class="furniture__body">
@@ -402,7 +477,9 @@
                     class="row-furniture__item"
                   >
                     <picture
-                      ><img src="/assets/img/furniture/09.jpg"
+                      ><img
+                        src="/assets/img/furniture/09.jpg"
+                        alt="furniture item"
                     /></picture>
                   </a>
                   <a
@@ -410,7 +487,9 @@
                     class="row-furniture__item"
                   >
                     <picture
-                      ><img src="/assets/img/furniture/01.jpg"
+                      ><img
+                        src="/assets/img/furniture/01.jpg"
+                        alt="furniture item"
                     /></picture>
                   </a>
                   <a
@@ -418,7 +497,9 @@
                     class="row-furniture__item"
                   >
                     <picture
-                      ><img src="/assets/img/furniture/02.jpg"
+                      ><img
+                        src="/assets/img/furniture/02.jpg"
+                        alt="furniture item"
                     /></picture>
                   </a>
                 </div>
@@ -430,7 +511,9 @@
                     class="row-furniture__item"
                   >
                     <picture
-                      ><img src="/assets/img/furniture/04.jpg"
+                      ><img
+                        src="/assets/img/furniture/04.jpg"
+                        alt="furniture item"
                     /></picture>
                   </a>
                   <a
@@ -438,7 +521,9 @@
                     class="row-furniture__item"
                   >
                     <picture
-                      ><img src="/assets/img/furniture/06.jpg"
+                      ><img
+                        src="/assets/img/furniture/06.jpg"
+                        alt="furniture item"
                     /></picture>
                   </a>
                   <a
@@ -446,7 +531,9 @@
                     class="row-furniture__item"
                   >
                     <picture
-                      ><img src="/assets/img/furniture/07.jpg"
+                      ><img
+                        src="/assets/img/furniture/07.jpg"
+                        alt="furniture item"
                     /></picture>
                   </a>
                 </div>
@@ -460,7 +547,9 @@
                     class="row-furniture__item"
                   >
                     <picture
-                      ><img src="/assets/img/furniture/03.jpg"
+                      ><img
+                        src="/assets/img/furniture/03.jpg"
+                        alt="furniture item"
                     /></picture>
                   </a>
                 </div>
@@ -474,7 +563,9 @@
                     class="row-furniture__item"
                   >
                     <picture
-                      ><img src="/assets/img/furniture/04.jpg"
+                      ><img
+                        src="/assets/img/furniture/04.jpg"
+                        alt="furniture item"
                     /></picture>
                   </a>
                   <a
@@ -482,7 +573,9 @@
                     class="row-furniture__item"
                   >
                     <picture
-                      ><img src="/assets/img/furniture/05.jpg"
+                      ><img
+                        src="/assets/img/furniture/05.jpg"
+                        alt="furniture item"
                     /></picture>
                   </a>
                   <a
@@ -490,7 +583,9 @@
                     class="row-furniture__item"
                   >
                     <picture
-                      ><img src="/assets/img/furniture/01.jpg"
+                      ><img
+                        src="/assets/img/furniture/01.jpg"
+                        alt="furniture item"
                     /></picture>
                   </a>
                 </div>
@@ -502,7 +597,9 @@
                     class="row-furniture__item"
                   >
                     <picture
-                      ><img src="/assets/img/furniture/08.jpg"
+                      ><img
+                        src="/assets/img/furniture/08.jpg"
+                        alt="furniture item"
                     /></picture>
                   </a>
                   <a
@@ -510,7 +607,9 @@
                     class="row-furniture__item"
                   >
                     <picture
-                      ><img src="/assets/img/furniture/09.jpg"
+                      ><img
+                        src="/assets/img/furniture/09.jpg"
+                        alt="furniture item"
                     /></picture>
                   </a>
                   <a
@@ -518,7 +617,9 @@
                     class="row-furniture__item"
                   >
                     <picture
-                      ><img src="/assets/img/furniture/06.jpg"
+                      ><img
+                        src="/assets/img/furniture/06.jpg"
+                        alt="furniture item"
                     /></picture>
                   </a>
                 </div>
@@ -548,15 +649,16 @@
         <div class="text-grey grid-item text-1-4" onclick="toFuniro()">
           www.funiro.com
         </div>
+    
         <div class="text-bold grid-item header-2">Menu</div>
-        <div>
-          <a href="#products" class="text-grey grid-item text-2-1">Products</a>
+        <div class="text-grey grid-item text-2-1">
+          <a href="#products">Products</a>
         </div>
-        <div>
-          <a href="#rooms" class="text-grey grid-item text-2-2">Rooms</a>
+        <div class="text-grey grid-item text-2-2">
+          <a href="#rooms" >Rooms</a>
         </div>
-        <div>
-          <a href="#furniture" class="text-grey grid-item text-2-3"
+        <div class="text-grey grid-item text-2-3">
+          <a href="#furniture" 
             >Inspirations</a
           >
         </div>
@@ -567,7 +669,7 @@
         <div class="text-grey grid-item text-3-2">Checkout</div>
         <div class="text-grey grid-item text-3-3">My Cart</div>
         <div class="text-grey grid-item text-3-4">My catalog</div>
-        <div class="grid-item"></div>
+       
         <div class="text-bold grid-item header-4">Media</div>
         <div class="text-grey grid-item text-4-1" onclick="toFB()">
           Facebook
@@ -578,8 +680,7 @@
         <div class="text-grey grid-item text-4-3" onclick="toTwitt()">
           Twitter
         </div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
+        
         <div class="text-bold grid-item header-5">Stay Updated</div>
         <div class="grid-item-input">
           <input

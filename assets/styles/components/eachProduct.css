@@ -24,15 +24,17 @@ body {
   padding: 0;
 }
 
-.home-btn, .cart-btn {
+.home-btn,
+.cart-btn {
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
-.home-btn svg, .cart-btn svg {
+.home-btn svg,
+.cart-btn svg {
   width: 24px;
-    height: 24px;
+  height: 24px;
 }
 
 .header__title {

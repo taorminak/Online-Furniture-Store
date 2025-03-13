@@ -395,8 +395,8 @@
   text-align: center;
   transition-duration: 0.5s;
   display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .swiper-button-next:after {
@@ -410,9 +410,8 @@
   text-align: center;
   color: var(--color-primary);
   display: flex;
-    justify-content: center;
-    align-items: center;
-  
+  justify-content: center;
+  align-items: center;
 }
 
 .swiper-button-prev:hover:after,

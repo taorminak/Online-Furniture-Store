@@ -22,7 +22,8 @@ body {
   margin-bottom: 5em;
 }
 
-.home-btn, .cart-btn {
+.home-btn,
+.cart-btn {
   background-color: transparent;
   border: none;
   cursor: pointer;
