@@ -49,59 +49,124 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Search functionality
-const mobileSearchInput = document.querySelector('.mobile-search__input');
-const mobileSearchResults = document.querySelector('.mobile-search__results');
+const mobileSearchInput = document.querySelector(".mobile-search__input");
+const mobileSearchResults = document.querySelector(".mobile-search__results");
 const products = [
-    { name: 'Syltherine', category: 'Products', url: './productsPages/Syltherine/index.html' },
-    { name: 'Leviosa', category: 'Products', url: './productsPages/Leviosa/index.html' },
-    { name: 'Lolito', category: 'Products', url: './productsPages/Lolito/index.html' },
-    { name: 'Respira', category: 'Products', url: './productsPages/Respira/index.html' },
-    { name: 'Grifo', category: 'Products', url: './productsPages/Grifo/index.html' },
-    { name: 'Muggo', category: 'Products', url: './productsPages/Muggo/index.html' },
-    { name: 'Pingky', category: 'Products', url: './productsPages/Pingky/index.html' },
-    { name: 'Potty', category: 'Products', url: './productsPages/Potty/index.html' },
-    { name: 'Bedroom', category: 'Rooms', url: './roomsPages/Bedroom/index.html' },
-    { name: 'Living Room', category: 'Rooms', url: './roomsPages/LivingRoom/index.html' },
-    { name: 'Kitchen', category: 'Rooms', url: './roomsPages/Kitchen/index.html' },
-    { name: 'Dining Room', category: 'Rooms', url: './roomsPages/DiningRoom/index.html' },
-    { name: 'Bathroom', category: 'Rooms', url: './roomsPages/Bathroom/index.html' },
-    { name: "Kids' Room", category: 'Rooms', url: './roomsPages/KidsRoom/index.html' },
-    { name: 'Hallway', category: 'Rooms', url: './roomsPages/Hallway/index.html' }
+  {
+    name: "Syltherine",
+    category: "Products",
+    url: "./productsPages/Syltherine/index.html",
+  },
+  {
+    name: "Leviosa",
+    category: "Products",
+    url: "./productsPages/Leviosa/index.html",
+  },
+  {
+    name: "Lolito",
+    category: "Products",
+    url: "./productsPages/Lolito/index.html",
+  },
+  {
+    name: "Respira",
+    category: "Products",
+    url: "./productsPages/Respira/index.html",
+  },
+  {
+    name: "Grifo",
+    category: "Products",
+    url: "./productsPages/Grifo/index.html",
+  },
+  {
+    name: "Muggo",
+    category: "Products",
+    url: "./productsPages/Muggo/index.html",
+  },
+  {
+    name: "Pingky",
+    category: "Products",
+    url: "./productsPages/Pingky/index.html",
+  },
+  {
+    name: "Potty",
+    category: "Products",
+    url: "./productsPages/Potty/index.html",
+  },
+  {
+    name: "Bedroom",
+    category: "Rooms",
+    url: "./roomsPages/Bedroom/index.html",
+  },
+  {
+    name: "Living Room",
+    category: "Rooms",
+    url: "./roomsPages/LivingRoom/index.html",
+  },
+  {
+    name: "Kitchen",
+    category: "Rooms",
+    url: "./roomsPages/Kitchen/index.html",
+  },
+  {
+    name: "Dining Room",
+    category: "Rooms",
+    url: "./roomsPages/DiningRoom/index.html",
+  },
+  {
+    name: "Bathroom",
+    category: "Rooms",
+    url: "./roomsPages/Bathroom/index.html",
+  },
+  {
+    name: "Kids' Room",
+    category: "Rooms",
+    url: "./roomsPages/KidsRoom/index.html",
+  },
+  {
+    name: "Hallway",
+    category: "Rooms",
+    url: "./roomsPages/Hallway/index.html",
+  },
 ];
 
 if (mobileSearchInput) {
-    mobileSearchInput.addEventListener('input', function(e) {
-        const searchTerm = e.target.value.toLowerCase().trim();
-        
-        if (searchTerm.length < 2) {
-            mobileSearchResults.style.display = 'none';
-            return;
-        }
+  mobileSearchInput.addEventListener("input", function (e) {
+    const searchTerm = e.target.value.toLowerCase().trim();
 
-        const filteredResults = products.filter(item => 
-            item.name.toLowerCase().includes(searchTerm) ||
-            item.category.toLowerCase().includes(searchTerm)
-        );
+    if (searchTerm.length < 2) {
+      mobileSearchResults.style.display = "none";
+      return;
+    }
 
-        if (filteredResults.length > 0) {
-            mobileSearchResults.innerHTML = filteredResults
-                .map(item => `
+    const filteredResults = products.filter(
+      (item) =>
+        item.name.toLowerCase().includes(searchTerm) ||
+        item.category.toLowerCase().includes(searchTerm),
+    );
+
+    if (filteredResults.length > 0) {
+      mobileSearchResults.innerHTML = filteredResults
+        .map(
+          (item) => `
                     <a href="${item.url}" class="mobile-search__result">
                         <div class="mobile-search__result-name">${item.name}</div>
                         <div class="mobile-search__result-category">${item.category}</div>
                     </a>
-                `).join('');
-            mobileSearchResults.style.display = 'block';
-        } else {
-            mobileSearchResults.innerHTML = '<div class="mobile-search__no-results">No results found</div>';
-            mobileSearchResults.style.display = 'block';
-        }
-    });
+                `,
+        )
+        .join("");
+      mobileSearchResults.style.display = "block";
+    } else {
+      mobileSearchResults.innerHTML =
+        '<div class="mobile-search__no-results">No results found</div>';
+      mobileSearchResults.style.display = "block";
+    }
+  });
 
-    // Close search results when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.mobile-search')) {
-            mobileSearchResults.style.display = 'none';
-        }
-    });
+  // Close search results when clicking outside
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".mobile-search")) {
+      mobileSearchResults.style.display = "none";
+    }
+  });
 }

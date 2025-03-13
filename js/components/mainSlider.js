@@ -7475,8 +7475,7 @@
 
         if (params.dynamicBullets) {
           swiper.pagination.bulletSize = bullets
-            .eq(0)
-            [swiper.isHorizontal() ? "outerWidth" : "outerHeight"](true);
+            .eq(0)[swiper.isHorizontal() ? "outerWidth" : "outerHeight"](true);
           $el.css(
             swiper.isHorizontal() ? "width" : "height",
             swiper.pagination.bulletSize * (params.dynamicMainBullets + 4) +
