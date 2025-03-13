@@ -1,5 +1,6 @@
 .main__about {
   width: 100%;
+  margin: auto;
   margin-top: 5%;
 }
 
@@ -118,7 +119,6 @@
   }
 
   .about__container {
-    width: 30%;
     height: 100%;
     flex-direction: column;
     justify-content: space-between;
