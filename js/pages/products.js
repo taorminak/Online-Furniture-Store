@@ -1,3 +1,5 @@
+import { updateCartCounter } from '../utils/store.js';
+
 /*---products JSON---*/
 let productsJSON = `[{
     "name":"Syltherine",
@@ -193,19 +195,78 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelector(".cards").innerHTML = productsCards;
 
-  const addButton = document.querySelectorAll(".hover-btn__add");
+   const addButton = document.querySelectorAll(".hover-btn__add"); 
 
-  addButton.forEach((button) => {
-    button.addEventListener("click", () => {
-      alert("Item added to the cart");
-    });
+  // Load cart state from localStorage on page load
+  const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+  
+  // Apply saved cart state to buttons
+  addButton.forEach((button, index) => {
+    if (cartProducts.some(item => item.title === products[index].name)) {
+      button.textContent = "Remove from cart";
+    }
   });
+
+  addButton.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      const productName = products[index].name;
+      let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+      
+      if (button.textContent === "Remove from cart") {
+        // Remove from cart
+        button.textContent = "Add to cart";
+        cartProducts = cartProducts.filter(item => item.title !== productName);
+        localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+        updateCartCounter();
+      } else {
+        // Add to cart
+        const existingItem = cartProducts.find(item => item.title === productName);
+        if (existingItem) {
+          alert("This item is already in the cart");
+          return;
+        }
+        
+        button.textContent = "Remove from cart";
+        const price = products[index].price;
+        const imageSrc = products[index].picture;
+        cartProducts.push({ title: productName, price, imageSrc });
+        localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+        updateCartCounter();
+        alert("Item added to the cart");
+      }
+    });
+  }); 
 
   const addLikes = document.querySelectorAll(".extra-btn__like");
 
-  addLikes.forEach((button) => {
+  // Load liked state from localStorage on page load
+  const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  
+  // Apply saved liked state to buttons
+  addLikes.forEach((button, index) => {
+    if (wishlist.some(item => item.titleWL === products[index].name)) {
+      button.innerHTML = '<i class="fas fa-heart" style="color: #e89f71; margin-right: 10px;"></i> <span style="color: #e89f71;">Liked!</span>';
+    }
+  });
+
+  addLikes.forEach((button, index) => {
     button.addEventListener("click", () => {
-      button.textContent = "Liked!";
+      const productName = products[index].name;
+      let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      
+      if (button.querySelector('.fa-heart')) {
+        // Unlike
+        button.innerHTML = '<img src="./assets/images/ourProducts/heartOrange.png" alt="like" />Like';
+        wishlist = wishlist.filter(item => item.titleWL !== productName);
+      } else {
+        // Like
+        button.innerHTML = '<i class="fas fa-heart" style="color: #e89f71; margin-right: 10px;"></i> <span style="color: #e89f71;">Liked!</span>';
+        const priceWL = products[index].price;
+        const imageSrcWL = products[index].picture;
+        wishlist.push({ titleWL: productName, priceWL, imageSrcWL });
+      }
+      
+      localStorage.setItem("wishlistItems", JSON.stringify(wishlist));
     });
   });
 

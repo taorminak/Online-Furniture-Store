@@ -6,6 +6,20 @@
 
 html {
   box-sizing: border-box;
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 *,

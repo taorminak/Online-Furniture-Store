@@ -1,62 +1,67 @@
 const profileContainerChangeButton = document.querySelector(
   ".profile__inputContainer-change-button",
 );
-const profileImage = document.querySelector(".profile__picture");
-const regexpURL =
-  /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/;
-const profileMessage = document.querySelector(".profile__message");
-const profileArray = [];
 
 // Отобразить инпут для изменения аватарки
 function showInput() {
-  profileContainerChangeButton.style.display = "none";
-  let profileInputContainer = "";
-  profileInputContainer += `
-    <input class="profile__inputContainer-input" placeholder="Enter the avatar URL">
-    <button class="profile__inputContainer-button">
-    <div class="fa-sharp fa-solid fa-paper-plane footer-button_icon"></div>
-    </button>
-    <button class="profile__inputContainer-save-button">Save</button>`;
-  document.querySelector(".profile__inputContainer").innerHTML =
-    profileInputContainer;
-
-  const profileInput = document.querySelector(".profile__inputContainer-input");
-  const profileInputButton = document.querySelector(
-    ".profile__inputContainer-button",
+  const container = document.querySelector(".profile__inputContainer");
+  const changeButton = document.querySelector(
+    ".profile__inputContainer-change-button",
   );
-  const profileInputSaveButton = document.querySelector(
+
+  // Hide the change button
+  changeButton.style.display = "none";
+
+  container.innerHTML = `
+    <label class="profile__input-label">Change avatar URL</label>
+    <div class="profile__input-group">
+      <input type="text" class="profile__inputContainer-input" placeholder="Enter image URL">
+      <button class="profile__inputContainer-button">
+        <i class="fa-solid fa-check"></i>
+      </button>
+      <button class="profile__inputContainer-save-button">Save Changes</button>
+    </div>
+    <div class="profile__input-group">
+      <div class="profile__file-input-wrapper">
+        <input type="file" class="profile__file-input" accept="image/*">
+        <label class="profile__file-input-label">Choose File</label>
+      </div>
+    </div>
+  `;
+
+  // Add event listeners
+  const urlInput = container.querySelector(".profile__inputContainer-input");
+  const urlButton = container.querySelector(".profile__inputContainer-button");
+  const saveButton = container.querySelector(
     ".profile__inputContainer-save-button",
   );
+  const fileInput = container.querySelector(".profile__file-input");
+  const fileLabel = container.querySelector(".profile__file-input-label");
 
-  profileInputButton.addEventListener("click", getUrlAndChangeAva);
-  profileInputSaveButton.addEventListener("click", hideInput);
-
-  function getUrlAndChangeAva() {
-    if (profileInput.value.match(regexpURL)) {
-      profileArray.push(profileInput.value);
-      if (profileArray.length > 1) {
-        profileArray.shift();
-      }
-      profileInput.value = "";
-      profileMessage.textContent = "";
-      const profileArrayToString = JSON.stringify(profileArray);
-      localStorage.setItem("avatar_url", profileArrayToString);
-
-      const profileImageFromLocStor = JSON.parse(
-        localStorage.getItem("avatar_url"),
-      );
-      profileImage.setAttribute("src", profileImageFromLocStor);
-    } else {
-      profileMessage.style.color = "red";
-      profileMessage.textContent = "Enter URL";
+  urlButton.addEventListener("click", () => {
+    if (urlInput.value.trim()) {
+      document.querySelector(".profile__picture").src = urlInput.value;
     }
-  }
+  });
 
-  // Скрытие инпута и появление изначальной кнопки
-  function hideInput() {
-    document.querySelector(".profile__inputContainer").innerHTML = "";
-    profileContainerChangeButton.style.display = "";
-  }
+  saveButton.addEventListener("click", () => {
+    // Save changes and show the change button again
+    changeButton.style.display = "block";
+    container.innerHTML = ""; // Clear the form
+    console.log("Changes saved");
+  });
+
+  fileInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      fileLabel.textContent = file.name;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        document.querySelector(".profile__picture").src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
 }
 
 // По загрузке страницы берём аву из LS или дефолтную
@@ -124,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
     purchaseBtn.addEventListener("click", function () {
       if (cartContainer.children.length > 0) {
         alert("Thank you for your purchase!");
-        localStorage.removeItem("cartItems");
+        localStorage.removeItem("cartProducts");
         updateCartDisplay();
       } else {
         alert("Your cart is empty!");
@@ -146,7 +151,7 @@ profileContainerChangeButton.addEventListener("click", showInput);
 function loadCart() {
   /* eslint-disable no-unused-vars */
   const cartItems = document.querySelector(".cart-items");
-  const cartData = JSON.parse(localStorage.getItem("data")) || [];
+  const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
   /* eslint-enable no-unused-vars */
   // Отображение товаров в корзине
   // ...
@@ -167,15 +172,19 @@ function updateCartDisplay() {
   const cartTotal = document.querySelector(".cart-total-price");
 
   if (cartContainer && cartTotal) {
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
     cartContainer.innerHTML = "";
     let total = 0;
 
-    cartItems.forEach((item, index) => {
-      const cartRow = createCartRow(item, index);
-      cartContainer.appendChild(cartRow);
-      total += parseFloat(item.price.replace("$", "")) * item.quantity;
-    });
+    if (cartItems.length === 0) {
+      cartContainer.innerHTML = '<div class="empty-state">There are no items in the cart yet</div>';
+    } else {
+      cartItems.forEach((item, index) => {
+        const cartRow = createCartRow(item, index);
+        cartContainer.appendChild(cartRow);
+        total += parseFloat(item.price.replace("$", "")) * (item.quantity || 1);
+      });
+    }
 
     cartTotal.textContent = `$${total.toFixed(2)}`;
   }
@@ -184,14 +193,17 @@ function updateCartDisplay() {
 function updateWishlistDisplay() {
   const wishlistContainer = document.querySelector(".wishlist-items");
   if (wishlistContainer) {
-    const wishlistItems =
-      JSON.parse(localStorage.getItem("wishlistItems")) || [];
+    const wishlistItems = JSON.parse(localStorage.getItem("wishlistItems")) || [];
     wishlistContainer.innerHTML = "";
 
-    wishlistItems.forEach((item, index) => {
-      const wishlistRow = createWishlistRow(item, index);
-      wishlistContainer.appendChild(wishlistRow);
-    });
+    if (wishlistItems.length === 0) {
+      wishlistContainer.innerHTML = '<div class="empty-state">There are no items in the wishlist yet</div>';
+    } else {
+      wishlistItems.forEach((item, index) => {
+        const wishlistRow = createWishlistRow(item, index);
+        wishlistContainer.appendChild(wishlistRow);
+      });
+    }
   }
 }
 
@@ -200,12 +212,12 @@ function createCartRow(item, index) {
   cartRow.classList.add("cart-row");
   cartRow.innerHTML = `
     <div class="cart-item cart-column">
-      <img class="cart-item-image" src="${item.image}" width="100" height="100">
-      <span class="cart-item-title">${item.name}</span>
+      <img class="cart-item-image" src="${item.imageSrc}" width="100" height="100">
+      <span class="cart-item-title">${item.title}</span>
     </div>
     <span class="cart-price cart-column">${item.price}</span>
     <div class="cart-quantity cart-column">
-      <input class="cart-quantity-input" type="number" value="${item.quantity}">
+      <input class="cart-quantity-input" type="number" value="${item.quantity || 1}">
       <button class="btn btn-danger" type="button">REMOVE</button>
     </div>
   `;
@@ -221,10 +233,10 @@ function createWishlistRow(item, index) {
   wishlistRow.classList.add("wishlist-row");
   wishlistRow.innerHTML = `
     <div class="wishlist-item wishlist-column">
-      <img class="wishlist-item-image" src="${item.image}" width="100" height="100">
-      <span class="wishlist-item-title">${item.name}</span>
+      <img class="wishlist-item-image" src="${item.imageSrcWL}" width="100" height="100">
+      <span class="wishlist-item-title">${item.titleWL}</span>
     </div>
-    <span class="wishlist-price wishlist-column">${item.price}</span>
+    <span class="wishlist-price wishlist-column">${item.priceWL}</span>
     <div class="wishlist-action wishlist-column">
       <button class="btn btn-primary add-to-cart-btn" type="button">ADD TO CART</button>
       <button class="btn btn-danger remove-from-wishlist-btn" type="button">REMOVE</button>
@@ -244,9 +256,9 @@ function setupCartRowEventListeners(cartRow, index) {
   quantityInput.addEventListener("change", function (event) {
     const newQuantity = parseInt(event.target.value);
     if (newQuantity > 0) {
-      const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+      const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
       cartItems[index].quantity = newQuantity;
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      localStorage.setItem("cartProducts", JSON.stringify(cartItems));
       updateCartDisplay();
     } else {
       event.target.value = 1;
@@ -254,9 +266,9 @@ function setupCartRowEventListeners(cartRow, index) {
   });
 
   removeButton.addEventListener("click", function () {
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
     cartItems.splice(index, 1);
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem("cartProducts", JSON.stringify(cartItems));
     updateCartDisplay();
   });
 }
@@ -266,14 +278,18 @@ function setupWishlistRowEventListeners(wishlistRow, index) {
   const removeBtn = wishlistRow.querySelector(".remove-from-wishlist-btn");
 
   addToCartBtn.addEventListener("click", function () {
-    const wishlistItems =
-      JSON.parse(localStorage.getItem("wishlistItems")) || [];
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const wishlistItems = JSON.parse(localStorage.getItem("wishlistItems")) || [];
+    const cartItems = JSON.parse(localStorage.getItem("cartProducts")) || [];
     const item = wishlistItems[index];
 
     // Add to cart with quantity 1
-    cartItems.push({ ...item, quantity: 1 });
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    cartItems.push({ 
+      title: item.titleWL,
+      price: item.priceWL,
+      imageSrc: item.imageSrcWL,
+      quantity: 1 
+    });
+    localStorage.setItem("cartProducts", JSON.stringify(cartItems));
 
     // Remove from wishlist
     wishlistItems.splice(index, 1);
@@ -284,8 +300,7 @@ function setupWishlistRowEventListeners(wishlistRow, index) {
   });
 
   removeBtn.addEventListener("click", function () {
-    const wishlistItems =
-      JSON.parse(localStorage.getItem("wishlistItems")) || [];
+    const wishlistItems = JSON.parse(localStorage.getItem("wishlistItems")) || [];
     wishlistItems.splice(index, 1);
     localStorage.setItem("wishlistItems", JSON.stringify(wishlistItems));
     updateWishlistDisplay();

@@ -1,134 +1,116 @@
-let array = JSON.parse(localStorage.getItem("data"));
+// Global variables for storing cart and wishlistItems data
+let cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+let wishlistItems = JSON.parse(localStorage.getItem("wishlistItems")) || [];
 
-for (let i = 0; i < array.length; i++) {
-  let title = array[i].title;
-  let price = array[i].price;
-  let imageSrc = array[i].imageSrc;
-  let ind = i;
-
-  addItemToCart(ind, title, price, imageSrc);
-}
-
-let list = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-for (let i = 0; i < list.length; i++) {
-  let titleWL = list[i].titleWL;
-  let priceWL = list[i].priceWL;
-  let imageSrcWL = list[i].imageSrcWL;
-  let index = i;
-
-  addItemToWishlist(index, titleWL, priceWL, imageSrcWL);
-}
-
-function addItemToWishlist(index, titleWL, priceWL, imageSrcWL) {
-  let wishlistRow = document.createElement("div");
-  wishlistRow.classList.add("wishlist-row");
-  let wishlistItems = document.getElementsByClassName("wishlist-items")[0];
-  let wishlistItemNames = wishlistItems.getElementsByClassName(
-    "wishlist-item-title",
-  );
-  for (let i = 0; i < wishlistItemNames.length; i++) {
-    if (wishlistItemNames[i].innerText == titleWL) {
-      alert("This item is already added to the wishlist");
-      return;
-    }
+// Функция обновления счетчика корзины
+function updateCartCounter() {
+  const counter = document.querySelector('.cart-counter');
+  if (counter) {
+    const cartProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+    const count = cartProducts.length;
+    counter.textContent = count;
+    counter.style.display = count > 0 ? 'block' : 'none';
+    console.log('Cart counter updated:', count);
   }
-  let wishlistRowContents = `
-        <div class="wishlist-item wishlist-column">
-            <img class="wishlist-item-image" src="${imageSrcWL}" width="100" height="100"><br>
-            <span class="wishlist-item-title">${titleWL}</span>
-        </div>
-        <span class="wishlist-price wishlist-column">${priceWL}</span>
-        <div class="wishlist-quantity wishlist-column">
-            <button class="btn btn-danger" type="button" onclick="removeFromWishlistLS(${index})">Remove</button>
-        </div>`;
-  wishlistRow.innerHTML = wishlistRowContents;
-  wishlistItems.append(wishlistRow);
-  wishlistRow
-    .getElementsByClassName("btn-danger")[0]
-    .addEventListener("click", removeWishlistItem);
 }
 
-function removeWishlistItem(event) {
+export function addItemToCart(ind, title, price, imageSrc) {
+  let cartItems = document.getElementsByClassName("cart-items")[0];
+  
+  // Проверяем, существует ли элемент корзины
+  if (!cartItems) {
+    return; // Если элемента нет, просто выходим
+  }
+
+  let cartRowContents = `
+    <div class="cart-item cart-column">
+      <img class="cart-item-image" src="${imageSrc}" width="100" height="100">
+      <span class="cart-item-title">${title}</span>
+    </div>
+    <span class="cart-price cart-column">${price}</span>
+    <div class="cart-quantity cart-column">
+      <input class="cart-quantity-input" type="number" value="1">
+      <button class="btn btn-danger" type="button" onclick="removeFromLS(${ind})">Remove</button>
+    </div>`;
+  let cartRow = document.createElement("div");
+  cartRow.classList.add("cart-row");
+  cartRow.innerHTML = cartRowContents;
+  cartItems.append(cartRow);
+  cartRow.getElementsByClassName("btn-danger")[0].addEventListener("click", removeCartItem);
+  cartRow.getElementsByClassName("cart-quantity-input")[0].addEventListener("change", quantityChanged);
+  updateCartTotal();
+  updateCartCounter();
+}
+
+export function addItemToWishlist(index, titleWL, priceWL, imageSrcWL) {
+  let wishlistItems = document.getElementsByClassName("wishlist-items")[0];
+  
+  let wishlistItemsRowContents = `
+    <div class="wishlist-item wishlist-column">
+      <img class="wishlist-item-image" src="${imageSrcWL}" width="100" height="100"><br>
+      <span class="wishlist-item-title">${titleWL}</span>
+    </div>
+    <span class="wishlist-price wishlist-column">${priceWL}</span>
+    <div class="wishlist-quantity wishlist-column">
+      <button class="btn btn-danger" type="button" onclick="removeFromWishlistItemsLS(${index})">Remove</button>
+    </div>`;
+  let wishlistItemsRow = document.createElement("div");
+  wishlistItemsRow.classList.add("wishlist-row");
+  wishlistItemsRow.innerHTML = wishlistItemsRowContents;
+  wishlistItems.append(wishlistItemsRow);
+  wishlistItemsRow.getElementsByClassName("btn-danger")[0].addEventListener("click", removeWishlistItem);
+}
+
+export function removeWishlistItem(event) {
   let buttonClicked = event.target;
   let parent = buttonClicked.parentElement.parentElement;
   parent.remove();
 }
 
-export function removeFromWishlistLS(index) {
-  list.splice(index, 1);
-  localStorage.setItem("wishlist", JSON.stringify(list));
+export function removeFromWishlistItemsLS(index) {
+  wishlistItems = wishlistItems.filter((_, i) => i !== index);
+  localStorage.setItem("wishlistItems", JSON.stringify(wishlistItems));
 }
 
-function addItemToCart(ind, title, price, imageSrc) {
-  let cartRow = document.createElement("div");
-  cartRow.classList.add("cart-row");
-  let cartItems = document.getElementsByClassName("cart-items")[0];
-  let cartItemNames = cartItems.getElementsByClassName("cart-item-title");
-  for (let i = 0; i < cartItemNames.length; i++) {
-    if (cartItemNames[i].innerText == title) {
-      alert("This item is already added to the cart");
-      return;
-    }
-  }
-  let cartRowContents = `
-        <div class="cart-item cart-column">
-            <img class="cart-item-image" src="${imageSrc}" width="100" height="100">
-            <span class="cart-item-title">${title}</span>
-        </div>
-        <span class="cart-price cart-column">${price}</span>
-        <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
-            <button class="btn btn-danger" type="button" onclick="removeFromLS(${ind})">Remove</button>
-        </div>`;
-  cartRow.innerHTML = cartRowContents;
-  cartItems.append(cartRow);
-  cartRow
-    .getElementsByClassName("btn-danger")[0]
-    .addEventListener("click", removeCartItem);
-  cartRow
-    .getElementsByClassName("cart-quantity-input")[0]
-    .addEventListener("change", quantityChanged);
-  updateCartTotal();
-  console.log(ind);
-}
-
-function removeCartItem(event) {
+export function removeCartItem(event) {
   let buttonClicked = event.target;
-  buttonClicked.parentElement.parentElement.remove();
+  let parent = buttonClicked.closest(".cart-row");
+  let title = parent.querySelector(".cart-item-title").innerText;
+  parent.remove();
+  removeFromLS(title);
   updateCartTotal();
 }
 
-export function removeFromLS(ind) {
-  array.splice(ind, 1);
-  localStorage.setItem("data", JSON.stringify(array));
-  console.log(ind);
+export function removeFromLS(title) {
+  cartProducts = cartProducts.filter((item) => item.title !== title);
+  localStorage.setItem("cartProducts", JSON.stringify(cartProducts));
+  updateCartCounter();
+  updateCartTotal();
 }
 
-if (document.readyState == "loading") {
-  document.addEventListener("DOMContentLoaded", ready);
-} else {
-  ready();
-}
-
-function ready() {
-  let removeCartItemButtons = document.getElementsByClassName("btn-danger");
-  for (let i = 0; i < removeCartItemButtons.length; i++) {
-    let button = removeCartItemButtons[i];
-    button.addEventListener("click", removeCartItem);
-  }
-  var quantityInputs = document.getElementsByClassName("cart-quantity-input");
-  for (let i = 0; i < quantityInputs.length; i++) {
-    let input = quantityInputs[i];
-    input.addEventListener("change", quantityChanged);
+export function ready() {
+  // Add event listeners only if elements exist
+  const removeCartItemButtons = document.getElementsByClassName("btn-danger");
+  if (removeCartItemButtons && removeCartItemButtons.length > 0) {
+    Array.from(removeCartItemButtons).forEach(button => {
+      button.addEventListener("click", removeCartItem);
+    });
   }
 
-  document
-    .getElementsByClassName("btn-purchase")[0]
-    .addEventListener("click", purchaseClicked);
+  const quantityInputs = document.getElementsByClassName("cart-quantity-input");
+  if (quantityInputs && quantityInputs.length > 0) {
+    Array.from(quantityInputs).forEach(input => {
+      input.addEventListener("change", quantityChanged);
+    });
+  }
+
+  const purchaseButton = document.getElementsByClassName("btn-purchase")[0];
+  if (purchaseButton) {
+    purchaseButton.addEventListener("click", purchaseClicked);
+  }
 }
 
-function purchaseClicked() {
+export function purchaseClicked() {
   alert("Thank you for your purchase");
   let cartItems = document.getElementsByClassName("cart-items")[0];
   while (cartItems.hasChildNodes()) {
@@ -138,7 +120,7 @@ function purchaseClicked() {
   updateCartTotal();
 }
 
-function quantityChanged(event) {
+export function quantityChanged(event) {
   let input = event.target;
   if (isNaN(input.value) || input.value <= 0) {
     input.value = 1;
@@ -146,25 +128,113 @@ function quantityChanged(event) {
   updateCartTotal();
 }
 
-function clearLS() {
-  localStorage.clear();
+export function clearLS() {
+  localStorage.removeItem("cartProducts");
+  localStorage.removeItem("wishlistItems");
+  cartProducts = [];
+  wishlistItems = [];
 }
 
-function updateCartTotal() {
+export function updateCartTotal() {
   let cartItemContainer = document.getElementsByClassName("cart-items")[0];
+
+  if (!cartItemContainer) {
+    console.error("Cart item container not found!");
+    return;
+  }
+
   let cartRows = cartItemContainer.getElementsByClassName("cart-row");
+
   let total = 0;
   for (let i = 0; i < cartRows.length; i++) {
     let cartRow = cartRows[i];
+
     let priceElement = cartRow.getElementsByClassName("cart-price")[0];
-    let quantityElement = cartRow.getElementsByClassName(
-      "cart-quantity-input",
-    )[0];
-    let price = parseFloat(priceElement.innerText.replace("$", ""));
-    let quantity = quantityElement.value;
-    total = total + price * quantity;
+    let quantityElement = cartRow.getElementsByClassName("cart-quantity-input")[0];
+
+    if (priceElement && quantityElement) {
+      let priceText = priceElement.textContent;
+     
+      if (priceText) {
+        let price = parseFloat(priceText.replace(/[^\d.]/g, ""));
+
+        let quantity = quantityElement.value;
+        total = total + price * quantity;
+      } else {
+        console.error("priceElement.innerText is empty or undefined");
+      }
+    } else {
+      console.error("Price or quantity element is missing");
+    }
   }
+
   total = Math.round(total * 100) / 100;
-  document.getElementsByClassName("cart-total-price")[0].innerText =
-    "$" + total;
+
+  let totalElement = document.getElementsByClassName("cart-total-price")[0];
+
+  if (totalElement) {
+    totalElement.innerText = "$" + total;
+  } else {
+    console.error("Cart total price element not found!");
+  }
 }
+
+export function initializeStore() {
+  // Initialize event listeners
+  if (document.readyState == "loading") {
+    document.addEventListener("DOMContentLoaded", ready);
+  } else {
+    ready();
+  }
+
+  updateCartCounter();
+  // Only proceed with cart/wishlistItems initialization if we're on the account page
+  const cartItems = document.getElementsByClassName("cart-items")[0];
+  const wishlistItems = document.getElementsByClassName("wishlistItems-items")[0];
+  
+  if (cartItems || wishlistItems) {
+    // Clear existing items in DOM first
+    if (cartItems) {
+      while (cartItems.hasChildNodes()) {
+        cartItems.removeChild(cartItems.firstChild);
+      }
+    }
+    if (wishlistItems) {
+      while (wishlistItems.hasChildNodes()) {
+        wishlistItems.removeChild(wishlistItems.firstChild);
+      }
+    }
+
+    console.log("Loading cart items from localStorage:", cartProducts);
+    console.log("Loading wishlistItems items from localStorage:", wishlistItems);
+
+    // Initialize cart and wishwishlistItemsItems from localStorage
+    if (cartItems) {
+      for (let i = 0; i < cartProducts.length; i++) {
+        let title = cartProducts[i].title;
+        let price = cartProducts[i].price;
+        let imageSrc = cartProducts[i].imageSrc;
+        let ind = i;
+        addItemToCart(ind, title, price, imageSrc);
+      }
+    }
+
+    if (wishlistItems) {
+      for (let i = 0; i < wishlistItems.length; i++) {
+        let titleWL = wishlistItems[i].titleWL;
+        let priceWL = wishlistItems[i].priceWL;
+        let imageSrcWL = wishlistItems[i].imageSrcWL;
+        let index = i;
+        addItemToWishlist(index, titleWL, priceWL, imageSrcWL);
+      }
+    }
+  }
+}
+
+// Only run initialization in browser environment, not in tests
+if (typeof process === "undefined" || process.env.NODE_ENV !== "test") {
+  console.log("initialize")
+  initializeStore();
+}
+
+export { updateCartCounter };

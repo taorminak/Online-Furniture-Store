@@ -1,51 +1,69 @@
-const profile = document.querySelector(".profile");
-const urlImage = JSON.parse(localStorage.getItem("avatar_url"));
-
-// Вывод аватарки из LS на главную
-if (urlImage === null) {
-  profile.setAttribute("src", "./assets/profile/profile.jpeg");
-} else {
-  profile.setAttribute("src", urlImage);
-}
-
 document.addEventListener("DOMContentLoaded", () => {
+  const profile = document.querySelector(".profile");
+  const urlImage = JSON.parse(localStorage.getItem("avatar_url"));
+
+  // Вывод аватарки из LS на главную
+  if (profile) {
+    if (urlImage === null) {
+      profile.setAttribute("src", "./assets/profile/profile.jpeg");
+    } else {
+      profile.setAttribute("src", urlImage);
+    }
+  }
+
   const burger = document.querySelector(".header__burger");
   const mobileMenu = document.querySelector(".header__mobile-menu");
+  const closeButton = document.querySelector(".mobile-menu__close");
   const dropdownTitles = document.querySelectorAll(".mobile-nav__title");
   const body = document.body;
 
   // Toggle mobile menu
-  burger.addEventListener("click", () => {
-    burger.classList.toggle("active");
-    mobileMenu.classList.toggle("active");
-    body.style.overflow = body.style.overflow === "hidden" ? "" : "hidden";
-  });
-
-  // Handle dropdown toggles
-  dropdownTitles.forEach((title) => {
-    title.addEventListener("click", () => {
-      const dropdown = title.nextElementSibling;
-
-      // Close other dropdowns
-      dropdownTitles.forEach((otherTitle) => {
-        if (otherTitle !== title) {
-          otherTitle.nextElementSibling.classList.remove("active");
-        }
-      });
-
-      // Toggle current dropdown
-      dropdown.classList.toggle("active");
+  if (burger && mobileMenu) {
+    burger.addEventListener("click", () => {
+      burger.classList.toggle("active");
+      mobileMenu.classList.toggle("active");
+      body.style.overflow = body.style.overflow === "hidden" ? "" : "hidden";
     });
-  });
+  }
 
-  // Close mobile menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!mobileMenu.contains(e.target) && !burger.contains(e.target)) {
+  // Close mobile menu when clicking close button
+  if (closeButton && mobileMenu && burger) {
+    closeButton.addEventListener("click", () => {
       mobileMenu.classList.remove("active");
       burger.classList.remove("active");
       body.style.overflow = "";
-    }
-  });
+    });
+  }
+
+  // Handle dropdown toggles
+  if (dropdownTitles.length > 0) {
+    dropdownTitles.forEach((title) => {
+      title.addEventListener("click", () => {
+        const dropdown = title.nextElementSibling;
+
+        // Close other dropdowns
+        dropdownTitles.forEach((otherTitle) => {
+          if (otherTitle !== title) {
+            otherTitle.nextElementSibling.classList.remove("active");
+          }
+        });
+
+        // Toggle current dropdown
+        dropdown.classList.toggle("active");
+      });
+    });
+  }
+
+  // Close mobile menu when clicking outside
+  if (mobileMenu && burger) {
+    document.addEventListener("click", (e) => {
+      if (!mobileMenu.contains(e.target) && !burger.contains(e.target)) {
+        mobileMenu.classList.remove("active");
+        burger.classList.remove("active");
+        body.style.overflow = "";
+      }
+    });
+  }
 });
 
 // Search functionality
